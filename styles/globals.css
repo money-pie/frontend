@@ -1,22 +1,5 @@
 @import 'normalize';
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  color: var(--accent-weak);
-  background-color: var(--base-strong);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 :root {
   --base-strong: #141516;
   --base-weak: #FFFFFF;
@@ -31,6 +14,28 @@ a {
   --complement-weak: #A17BA4;
 
   --faint-strong-up: #2B2B2B;
+
+  --font-family: "Montserrat", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--accent-weak);
+  background-color: var(--base-strong);
+
+  font-family: var(--font-family);
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .fancy {
