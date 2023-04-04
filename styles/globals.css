@@ -1,20 +1,15 @@
-@import 'normalize';
+@import url("normalize");
 
 :root {
   --base-strong: #141516;
-  --base-weak: #FFFFFF;
-
+  --base-weak: #FFF;
   --faint-strong: #363636;
   --faint-weak: #A29581;
-
   --accent-strong: #F5A932;
   --accent-weak: #F2DCBB;
-
   --complement-strong: #59345C;
   --complement-weak: #A17BA4;
-
   --faint-strong-up: #2B2B2B;
-
   --font-family: "Montserrat", sans-serif;
 }
 
@@ -22,6 +17,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+
   color: var(--accent-weak);
   background-color: var(--base-strong);
 
@@ -31,6 +27,7 @@ body {
 
 a {
   text-decoration: none;
+
   color: inherit;
 }
 
