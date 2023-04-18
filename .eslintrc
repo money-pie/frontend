@@ -2,14 +2,31 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "jsx-a11y",
+    "react",
+    "prettier"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      ],
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      }
+    }
   ],
   "rules": {
+    "prettier/prettier": "warn",
+    "react/jsx-props-no-spreading": "warn",
     "indent": [
       "warn",
       2
     ],
-    "semi": "off",
+    "semi": "warn",
     "@typescript-eslint/semi": [
       "warn"
     ],
@@ -21,8 +38,12 @@
     ]
   },
   "extends": [
+    "airbnb",
+    "airbnb-typescript",
     "eslint:recommended",
+    "next",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ]
 }
