@@ -43,3 +43,12 @@ a {
 .rounded {
   border-radius: 30px;
 }
+
+.visually-hidden {
+  position: absolute;
+
+  overflow: hidden;
+
+  width: 0;
+  height: 0;
+}
