@@ -1,0 +1,33 @@
+@import url("/styles/globals.css");
+
+.h1 {
+  color: inherit;
+
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 56px;
+}
+
+.h2 {
+  color: inherit;
+
+  font-size: 70px;
+  font-weight: 600;
+  line-height: 85px;
+}
+
+.h3 {
+  color: inherit;
+
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 49px;
+}
+
+.h4 {
+  color: inherit;
+
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 56px;
+}
