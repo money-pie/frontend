@@ -23,6 +23,7 @@
     "prettier/prettier": "warn",
     "react/jsx-props-no-spreading": "warn",
     "react/jsx-no-useless-fragment": "warn",
+    "react/button-has-type": "warn",
     "indent": [
       "warn",
       2

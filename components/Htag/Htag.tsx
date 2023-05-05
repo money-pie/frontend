@@ -11,6 +11,10 @@ function Htag({ tag, children }: HtagProps): JSX.Element {
     return <h3 className={styles.h3}>{children}</h3>;
   case "h4":
     return <h4 className={styles.h4}>{children}</h4>;
+  case "h5":
+    return <h5 className={styles.h5}>{children}</h5>;
+  case "h6":
+    return <h6 className={styles.h6}>{children}</h6>;
   default:
     return <></>;
   }
