@@ -1,0 +1,65 @@
+@import url("/styles/globals.css");
+
+.button {
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  border: none;
+  box-shadow: 10px 20px 21px var(--base-strong-shadow);
+
+  font-size: 40px;
+}
+
+.button:active {
+  transform: scale(0.92);
+
+  color: var(--base-weak);
+}
+
+.premium {
+  color: var(--base-strong);
+  background: var(--fancy-complement-weak);
+}
+
+.premium:hover {
+  border: 3px solid var(--accent-weak);
+  background: var(--fancy-complement-weak-reversed);
+}
+
+.premium:active {
+  color: var(--complement-strong);
+  border: 3px solid var(--complement-strong);
+}
+
+.ghost {
+  color: var(--accent-weak);
+  border: 3px solid var(--accent-weak);
+  background: none;
+}
+
+.ghost:hover {
+  transition: all 0.4s ease;
+
+  color: var(--base-strong);
+  background: var(--accent-weak);
+}
+
+.casual {
+  background: var(--fancy-accent-weak);
+}
+
+.casual:hover {
+  border: 3px solid var(--accent-weak);
+  background: var(--fancy-accent-weak-reversed);
+}
+
+.ordinary {
+  color: var(--faint-weak);
+  background: var(--faint-strong);
+}
+
+.ordinary:hover {
+  color: var(--accent-weak);
+  border: 3px solid var(--accent-weak);
+}
