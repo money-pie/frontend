@@ -2,6 +2,7 @@
 
 :root {
   --base-strong: #141516;
+  --base-strong-shadow: #141516 20%;
   --base-weak: #FFF;
   --faint-strong: #363636;
   --faint-weak: #A29581;
@@ -11,10 +12,18 @@
   --complement-weak: #A17BA4;
   --faint-strong-up: #2B2B2B;
   --font-family: "Montserrat", sans-serif;
+  --fancy-accent-weak: linear-gradient(90deg, var(--accent-weak) 0%, var(--accent-strong) 100%);
+  --fancy-accent-weak-reversed: linear-gradient(90deg, var(--accent-strong) 0%, var(--accent-weak) 100%);
+  --fancy-complement-weak: linear-gradient(90deg, var(--complement-weak) 0%, var(--accent-weak) 100%);
+  --fancy-complement-weak-reversed: linear-gradient(90deg, var(--accent-weak) 0%, var(--complement-weak) 100%);
 }
 
 html,
 body {
+  overflow-x: hidden;
+
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
 
@@ -35,13 +44,8 @@ a {
   box-sizing: border-box;
 }
 
-.fancy {
-  --fancy-accent-weak: linear-gradient(90deg, var(--accent-weak) 0%, var(--accent-strong) 100%);
-  --fancy-complement-weak: linear-gradient(90deg, var(--complement-weak) 0%, var(--accent-weak) 100%);
-}
-
 .rounded {
-  border-radius: 30px;
+  border-radius: 0.75em;
 }
 
 .visually-hidden {
@@ -51,4 +55,19 @@ a {
 
   width: 0;
   height: 0;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  border-color: transparent;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--base-weak);
+  outline-offset: 3px;
 }
