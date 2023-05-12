@@ -1,0 +1,36 @@
+.custom-button {
+  width: 80%;
+  height: 5rem;
+  margin-bottom: 1rem;
+}
+
+.around-input {
+  padding-bottom: 2rem;
+}
+
+.first {
+  position: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.first p {
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+
+  font-size: 40px;
+}
+
+.first-image {
+  margin-left: 3rem;
+}
+
+.h2 {
+  display: block;
+
+  margin-top: -1.7em;
+  margin-bottom: 1em;
+
+  font-size: 2rem;
+}
