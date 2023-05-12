@@ -1,0 +1,11 @@
+.btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-button {
+  width: 40%;
+  height: 77px;
+  margin-top: 1.5em;
+  margin-inline: 30px;
+}
