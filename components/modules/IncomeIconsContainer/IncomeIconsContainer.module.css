@@ -1,0 +1,38 @@
+.icon-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin-top: 2rem;
+}
+
+.icon-row-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  cursor: pointer;
+}
+
+.icon-row-item:hover {
+  transition: all 0.3s;
+  transform: scale(0.92);
+}
+
+.icon-row-icon {
+  width: 5rem;
+  height: 5rem;
+}
+
+.icon-row-text {
+  margin-top: 0.35rem;
+
+  text-align: center;
+
+  font-size: 1.3rem;
+}
+
+.selected .icon-row-text {
+  color: var(--accent-strong);
+}
