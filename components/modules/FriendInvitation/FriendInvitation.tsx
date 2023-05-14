@@ -18,10 +18,10 @@ function FriendInvitation({ active, onClose }: FriendInvitationProps): JSX.Eleme
 
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
-      <Htag className={styles.h2} tag="h2">
-        MoneyPie
-      </Htag>
       <div className={styles.first}>
+        <Htag className={styles.h2} tag="h2">
+          MoneyPie
+        </Htag>
         <div className={styles["first-image"]}>
           <Image
             src="/images/addoneperson.png"
@@ -32,7 +32,12 @@ function FriendInvitation({ active, onClose }: FriendInvitationProps): JSX.Eleme
         </div>
         <p>Пригласи друга для совместного бюджета</p>
         <div className={styles["around-input"]}>
-          <Input type="email" appearance="normal" placeholder="Введите почту друга" />
+          <Input
+            className={styles.input}
+            type="email"
+            appearance="normal"
+            placeholder="Введите почту друга"
+          />
         </div>
         <Button
           appearance="casual"
