@@ -1,0 +1,113 @@
+.rows {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  width: 120vw;
+  margin-top: -3.1rem;
+
+  color: var(--faint-weak);
+
+  font-size: 3.2vh;
+  gap: 2rem;
+}
+
+.row button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  margin-right: -1.7rem;
+  margin-left: -1.7rem;
+
+  cursor: pointer;
+  text-align: center;
+  white-space: normal;
+
+  color: inherit;
+
+  border-radius: 1.75rem;
+  background-color: var(--faint-strong-up);
+}
+
+.row-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  margin-right: -1.5rem;
+  margin-left: -1.5rem;
+  gap: 2rem;
+}
+
+.row-input {
+  /* margin-bottom: 1.4rem; */
+  margin-bottom: 1.5vw;
+}
+
+.custom-button {
+  width: 80%;
+  height: 4.7rem;
+}
+
+.input[type="number"]::-webkit-outer-spin-button,
+.input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+
+  margin: 0;
+}
+
+.row button:hover {
+  transition: all 0.2s;
+  transform: scale(0.98);
+
+  color: var(--accent-weak);
+}
+
+.row button.active {
+  transform: none;
+
+  color: var(--accent-strong);
+  background-color: transparent;
+}
+
+.input-date[type="date"]::-webkit-calendar-picker-indicator {
+  padding-right: 20px;
+
+  cursor: pointer;
+
+  background-image: url("/images/iconcalendar.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  appearance: none;
+}
+
+.input-date[type="date"]::-webkit-calendar-picker-indicator:hover {
+  transition: all 0.3s;
+  transform: scale(0.94);
+}
+
+.input-date {
+  width: 50%;
+  height: 5vh;
+
+  cursor: text;
+  text-align: center;
+
+  color: var(--faint-weak);
+  border: none;
+  border-radius: 1.75rem;
+  background-color: var(--faint-strong-up);
+
+  font-size: 3.2vh;
+}
+
+.input-date:focus {
+  border: 2px solid var(--accent-weak);
+}
