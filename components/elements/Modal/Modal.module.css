@@ -26,16 +26,23 @@
 }
 
 .modal-content {
+  /* overflow-x: auto; */
+
   box-sizing: border-box;
+  width: auto;
   max-width: 100%;
+  height: auto;
   max-height: calc(100% - 30px);
-  padding: 20px;
+  padding-top: 1vh;
+  padding-right: 2vw;
+
+  padding-left: 2vw;
 
   transition: 0.4s all;
   transform: scale(0.5);
 
   border: 3px solid var(--accent-weak);
-  border-radius: 30px;
+  border-radius: 1.75rem;
   background: var(--base-strong-shadow);
   box-shadow: 10px 20px 21px var(--base-strong-shadow);
 }
@@ -45,8 +52,12 @@
 }
 
 .modal-body {
-  width: 100%;
-  max-width: 800px;
+  width: 100vh;
+
+  /* max-width: 800px; */
+  max-width: 90vw;
+
+  max-height: 90vh;
   padding: 1.2em;
 
   text-align: center;
