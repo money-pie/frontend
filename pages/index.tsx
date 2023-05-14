@@ -3,6 +3,7 @@ import { useState } from "react";
 import Htag from "../components/elements/Htag/Htag";
 import Button from "../components/elements/Button/Button";
 import Input from "../components/elements/Input/Input";
+import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 
 export default function Home(): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -51,6 +52,7 @@ export default function Home(): JSX.Element {
 
       {/* <FriendInvitation active={showModal} onClose={closeModal} /> */}
       {/* <DetailedInformation active={showModal} onClose={closeModal} /> */}
+      <ExpenseAndIncomeWindow active={showModal} onClose={closeModal} />
     </div>
   );
 }
