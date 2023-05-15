@@ -1,0 +1,61 @@
+.custom-button {
+  width: 80%;
+
+  /* min-height: 2rem; */
+  height: 5rem;
+  margin-top: 2rem;
+}
+
+.first {
+  position: center;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 100%
+
+  /* width: 100%;
+  height: 100%; */
+}
+
+.around-input {
+  /* padding-bottom: 2rem; */
+  align-self: stretch;
+}
+
+.input {
+  max-height: 20%;
+}
+
+.first p {
+  /* margin-top: 1rem;
+  margin-bottom: 2%; */
+  display: block;
+  margin-block-start: 2%;
+  margin-block-end: 1rem;
+
+  align-self: stretch;
+
+  font-size: 0.8em;
+}
+
+.first-image {
+  margin-top: 0.5em;
+  margin-left: 3rem;
+
+  /* max-height: 10rem; */
+}
+
+.h2 {
+  display: block;
+
+  /* margin-top: -1.7em; */
+
+  /* margin-bottom: 1em; */
+  margin-top: -1.7em;
+  margin-block-end: 0;
+
+  font-size: 2rem;
+}

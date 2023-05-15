@@ -22,6 +22,8 @@ html,
 body {
   overflow-x: hidden;
 
+  box-sizing: border-box;
+
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -31,6 +33,7 @@ body {
   background-color: var(--base-strong);
 
   font-family: var(--font-family);
+  font-size: 100%;
   font-weight: 600;
 }
 
@@ -40,12 +43,14 @@ a {
   color: inherit;
 }
 
-* {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 .rounded {
-  border-radius: 0.75em;
+  border-radius: 1.75rem;
 }
 
 .visually-hidden {

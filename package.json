@@ -29,6 +29,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^7.0.0",
     "@types/node": "^18.11.19",
     "@types/react": "^18.0.27",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
