@@ -1,0 +1,70 @@
+.sidebar {
+  position: relative;
+
+  width: 60vh;
+
+  height: 100vh;
+
+  color: var(--base-strong);
+  border-radius: 0 30px 30px 0;
+
+  background: var(--fancy-accent-weak);
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1.5rem;
+}
+
+.menu a {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+
+  cursor: pointer;
+}
+
+.menu a:hover {
+  transition: 0.25s background-color;
+
+  border-radius: 1.75rem;
+  background-color: var(--accent-strong);
+}
+
+.menu-footer {
+  /* padding-left: 30%;
+  padding-right: 30%; */
+
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  transform: translateX(-50%);
+}
+
+.menu-footer a:hover {
+  text-decoration: underline;
+}
+
+.custom-button {
+  display: block;
+
+  width: 50vh;
+  height: 10vh;
+  margin-top: 1.5em;
+
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
+
+  font-size: 3.2vh;
+}
