@@ -33,6 +33,7 @@
     "react/jsx-props-no-spreading": "warn",
     "react/jsx-no-useless-fragment": "warn",
     "react/button-has-type": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
     "indent": [
       "warn",
       2
