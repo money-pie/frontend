@@ -1,0 +1,81 @@
+.main-target {
+  position: fixed;
+  z-index: 1;
+  top: 3.7rem;
+  right: 1.5%;
+  left: 1.5%;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100fr;
+  height: 31%;
+}
+
+.main-target h2 {
+  position: absolute;
+
+  bottom: 6vh;
+
+  cursor: pointer;
+
+  font-size: 7vmin;
+}
+
+.main-target h2:hover {
+  transition: all 0.3s;
+
+  color: var(--complement-weak);
+}
+
+.target-row {
+  position: absolute;
+  bottom: 2rem;
+
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.target-line {
+  width: 70%;
+  height: 5vh;
+
+  border-radius: 1.75rem;
+  background-image: var(--fancy-complement-weak);
+}
+
+.custom-button {
+  width: 50vh;
+  height: 5vh;
+
+  text-align: center;
+
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
+
+  font-size: 1.5rem;
+}
+
+.plus-icon svg {
+  position: absolute;
+  right: 1vw;
+  bottom: -60vh;
+
+  margin-right: 1%;
+  margin-bottom: 1%;
+
+  cursor: pointer;
+}
+
+.plus-icon:focus svg {
+  transition: all 0.3s;
+  transform: scale(0.9);
+}
+
+.plus-icon:hover svg {
+  transition: 0.3s all;
+  transform: rotate(90deg);
+}
