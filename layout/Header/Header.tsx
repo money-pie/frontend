@@ -1,6 +1,6 @@
 import React, { KeyboardEvent, useEffect, useState } from "react";
 import cn from "classnames";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { HeaderProps } from "./Header.props";
 import styles from "./Header.module.css";
 import Logo from "../logo.svg";
@@ -15,10 +15,8 @@ export function Header({ visible, className, ...props }: HeaderProps): JSX.Eleme
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleBellClick = () => {
-    // npm install react-router-dom
-    // import { Link } from "react-router-dom";
-    // переход на другую страницу при клике на колокольчик
-    // <Link to='/secondPage' />
+    // Выполнить переход на другую страницу при клике на колокольчик
+    window.location.href = "/notificationPage";
   };
 
   const handleBurgerClick = () => {
