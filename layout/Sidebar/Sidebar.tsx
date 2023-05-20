@@ -19,13 +19,13 @@ export function Sidebar({
   return (
     <div className={cn(className, styles.sidebar)} {...props}>
       <div className={styles.menu}>
-        <Link href="/">
+        <Link href="/profilePage">
           <a href="#">Профиль</a>
         </Link>
         <Link href="/">
           <a href="#">Главная страница</a>
         </Link>
-        <Link href="/">
+        <Link href="/statisticsPage">
           <a href="#">Статистика</a>
         </Link>
       </div>
