@@ -1,6 +1,5 @@
 import cn from "classnames";
 import React, { useState, KeyboardEvent } from "react";
-import Image from "next/image";
 import { MainTargetProps } from "./MainTarget.props";
 import styles from "./MainTarget.module.css";
 import Button from "../../components/elements/Button/Button";
@@ -11,11 +10,9 @@ import PlusIcon from "../PlusIcon/plusIcon.svg";
 
 export function MainTarget({ className, ...props }: MainTargetProps): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [showExpenseIncomeWindow, setShowExpenseIncomeWindow] = useState<boolean>(false);
 
   const closeModal = () => {
     setShowModal(false);
-    setShowExpenseIncomeWindow(false);
   };
 
   function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
@@ -47,18 +44,6 @@ export function MainTarget({ className, ...props }: MainTargetProps): JSX.Elemen
         </Button>
       </div>
       <TargetAdding active={showModal} onClose={closeModal} />
-      <span
-        role="button"
-        className={styles["plus-icon"]}
-        onClick={() => {
-          setShowExpenseIncomeWindow(true);
-        }}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-      >
-        <PlusIcon />
-      </span>
-      <ExpenseAndIncomeWindow active={showExpenseIncomeWindow} onClose={closeModal} />
     </div>
   );
 }
