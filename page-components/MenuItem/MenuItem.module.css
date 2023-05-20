@@ -1,5 +1,6 @@
 .menuitem {
   position: fixed;
+  z-index: auto;
   right: 1.5%;
   bottom: 0;
   left: 1.5%;
@@ -9,8 +10,11 @@
 
   width: 100fr;
   height: 60vh;
+  padding-right: 2vmin;
 
-  border-radius: 1.75rem 1.75rem 0 0;
+  padding-left: 2vmin;
+
+  border-radius: 1.5em 1.5em 0 0;
   background: var(--faint-strong);
 }
 
@@ -18,9 +22,12 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
 
-  margin-top: 0.5%;
+  width: 100%;
+
+  margin-top: 2vmin;
+  margin-bottom: 2vmin;
 
   font-size: 1.3rem;
 }
@@ -31,6 +38,7 @@
   justify-content: center;
 
   width: 50%;
+  height: 6vmin;
   margin-right: -2rem;
   margin-left: -2rem;
 
@@ -43,6 +51,8 @@
 
   border-radius: 1.75rem;
   background-color: var(--faint-strong-up);
+
+  font-size: 3vmin;
 }
 
 .menuitem-header button:hover {
