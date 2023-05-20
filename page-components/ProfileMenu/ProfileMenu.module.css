@@ -1,0 +1,61 @@
+.profile-menu {
+  position: fixed;
+  z-index: 2;
+  right: 1.5%;
+  bottom: 0;
+  left: 1.5%;
+
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100fr;
+  height: 50vh;
+
+  color: var(--base-strong);
+
+  border-radius: 1.75rem 1.75rem 0 0;
+  background: var(--fancy-accent-weak-reversed);
+
+  /* overflow: auto; */
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+
+  font-size: 3vh;
+}
+
+.menu a {
+  display: block;
+
+  width: 100%;
+  margin-left: 0.5rem;
+
+  padding-top: 1rem;
+  padding-bottom: 2.3vh;
+
+  cursor: pointer;
+}
+
+.menu a:first-child {
+  margin-top: 1.5rem;
+}
+
+.menu a:hover {
+  transition: 0.25s background-color;
+
+  border-radius: 1.75rem;
+  background-color: var(--accent-strong);
+}
+
+.custom-modal {
+  position: relative;
+  z-index: 2;
+}
