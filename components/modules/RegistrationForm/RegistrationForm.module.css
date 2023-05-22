@@ -1,0 +1,58 @@
+.custom-button {
+  width: 75%;
+  height: 5rem;
+  margin-bottom: 1rem;
+}
+
+.general {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.first {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.first input {
+  height: 9vh;
+  margin-bottom: 5%;
+}
+
+.second {
+  position: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.h5 {
+  display: block;
+
+  margin-top: -1.7em;
+  margin-bottom: 1em;
+
+  color: var(--accent-weak);
+
+  font-size: 2rem;
+}
+
+.second a {
+  display: block;
+
+  margin-top: 1rem;
+
+  cursor: pointer;
+
+  color: var(--faint-weak);
+
+  font-size: 23px;
+}
+
+.second a:hover {
+  text-decoration: underline;
+
+  color: var(--accent-strong);
+}
