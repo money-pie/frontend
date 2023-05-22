@@ -1,0 +1,45 @@
+.error-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.error-column img {
+  width: 85vw;
+  height: 85vh;
+  margin-top: -10vh;
+}
+
+.h6 {
+  position: absolute;
+
+  display: flex;
+  align-self: center;
+  justify-self: center;
+
+  margin-top: 45vmin;
+
+  font-size: 6vmin;
+}
+
+.error-column p {
+  position: absolute;
+
+  display: flex;
+  align-self: center;
+  justify-self: center;
+
+  margin-top: 45vmin;
+
+  font-size: 4vmin;
+}
+
+.custom-button {
+  width: 70vmin;
+  height: 10vh;
+  margin-top: 5vmin;
+  margin-bottom: 1vmin;
+
+  font-size: 4vmin;
+}
