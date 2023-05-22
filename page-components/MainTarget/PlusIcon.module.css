@@ -1,5 +1,6 @@
 .plus-icon svg {
   position: fixed;
+  z-index: auto;
   right: 1%;
   bottom: 0;
 
@@ -13,7 +14,7 @@
 
 .custom-modal {
   position: relative;
-  z-index: 2;
+  z-index: 7;
 }
 
 .plus-icon:focus svg {
