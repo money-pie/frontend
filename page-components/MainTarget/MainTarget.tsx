@@ -5,8 +5,6 @@ import styles from "./MainTarget.module.css";
 import Button from "../../components/elements/Button/Button";
 import Htag from "../../components/elements/Htag/Htag";
 import TargetAdding from "../../components/modules/TargetAdding/TargetAdding";
-import ExpenseAndIncomeWindow from "../../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
-import PlusIcon from "../PlusIcon/plusIcon.svg";
 
 export function MainTarget({ className, ...props }: MainTargetProps): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -20,6 +18,10 @@ export function MainTarget({ className, ...props }: MainTargetProps): JSX.Elemen
       setShowModal(true);
     }
   }
+
+  const goToPage = () => {
+    window.location.href = "/statisticsPage";
+  };
 
   return (
     <div className={cn(className, styles["main-target"])} {...props}>
@@ -39,6 +41,9 @@ export function MainTarget({ className, ...props }: MainTargetProps): JSX.Elemen
           appearance="ghost"
           className={`${styles["custom-button"]} rounded`}
           btnType="button"
+          onClick={() => {
+            goToPage();
+          }}
         >
           Статистика
         </Button>
