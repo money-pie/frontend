@@ -1,6 +1,5 @@
 import React, { KeyboardEvent, useEffect, useState } from "react";
 import cn from "classnames";
-// import { Link } from "react-router-dom";
 import { HeaderProps } from "./Header.props";
 import styles from "./Header.module.css";
 import Logo from "../logo.svg";
