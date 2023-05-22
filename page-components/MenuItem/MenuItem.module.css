@@ -1,5 +1,5 @@
 .menuitem {
-  position: fixed;
+  position: absolute;
   z-index: auto;
   right: 1.5%;
   bottom: 0;
@@ -67,4 +67,25 @@
 
   color: var(--accent-strong);
   background-color: transparent;
+}
+
+.menuitem-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuitem-content-private {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+
+  padding-right: 1.7vw;
+}
+
+.menuitem-content-wrapper div {
+  position: relative;
+
+  display: flex;
+
+  width: 100fr;
 }
