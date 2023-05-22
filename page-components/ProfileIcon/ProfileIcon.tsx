@@ -18,8 +18,6 @@ function ProfileIcon({
   isPremiumActive = false,
   ...props
 }: ProfileIconProps): JSX.Element {
-  const [showModal, setShowModal] = useState<boolean>(false);
-
   const [copiedText, setCopiedText] = useState<string>("Почта"); // сюда передаем нашу почту, чтобы скопировать
 
   const copyToClipboard = (text: string) => {
@@ -33,14 +31,13 @@ function ProfileIcon({
       });
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-    // setShowExpenseIncomeWindow(false);
+  const goToPage = () => {
+    window.location.href = "/invitationPage";
   };
 
   function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
     if (event.key === "Enter") {
-      setShowModal(true);
+      goToPage();
     }
   }
 
@@ -55,7 +52,7 @@ function ProfileIcon({
             role="button"
             className={styles["plus-profile"]}
             onClick={() => {
-              setShowModal(true);
+              goToPage();
             }}
             onKeyDown={handleKeyDown}
             tabIndex={0}
@@ -68,7 +65,7 @@ function ProfileIcon({
               role="button"
               className={styles["plus-profile"]}
               onClick={() => {
-                setShowModal(true);
+                goToPage();
               }}
               onKeyDown={handleKeyDown}
               tabIndex={0}
@@ -79,7 +76,7 @@ function ProfileIcon({
               role="button"
               className={styles["plus-profile"]}
               onClick={() => {
-                setShowModal(true);
+                goToPage();
               }}
               onKeyDown={handleKeyDown}
               tabIndex={0}
@@ -90,7 +87,7 @@ function ProfileIcon({
               role="button"
               className={styles["plus-profile"]}
               onClick={() => {
-                setShowModal(true);
+                goToPage();
               }}
               onKeyDown={handleKeyDown}
               tabIndex={0}
@@ -101,7 +98,7 @@ function ProfileIcon({
               role="button"
               className={styles["plus-profile"]}
               onClick={() => {
-                setShowModal(true);
+                goToPage();
               }}
               onKeyDown={handleKeyDown}
               tabIndex={0}
@@ -111,9 +108,9 @@ function ProfileIcon({
           </div>
         )}
       </div>
-      <div className={styles["custom-modal"]}>
+      {/* <div className={styles["custom-modal"]}>
         <FriendInvitation active={showModal} onClose={closeModal} />
-      </div>
+      </div> */}
       <div className={styles["profile-icon-footer"]}>
         <span>Имя пользователя</span>
         <div className={styles["footer-container"]}>
