@@ -10,10 +10,8 @@ export function Sidebar({
   isPremiumActive = false,
   ...props
 }: SidebarProps): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleSidebarClick = () => {
-    setIsOpen(!isOpen);
+  const goToPage = () => {
+    window.location.href = "/subscriptionPage";
   };
 
   return (
@@ -35,6 +33,9 @@ export function Sidebar({
             appearance="premium"
             className={`${styles["custom-button"]} rounded`}
             btnType="button"
+            onClick={() => {
+              goToPage();
+            }}
           >
             Премиум-подписка
           </Button>
