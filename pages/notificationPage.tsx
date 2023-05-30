@@ -9,17 +9,18 @@ function NotificationPage(): JSX.Element {
   return (
     <NotificationMenu>
       <Notifications title="Совет">
-        Определите свои финансовые цели. Это может быть сбережение определенной суммы на будущее,
-        покупка недвижимости или оплата образования
+        Попробуйте изменить отношение к покупкам. Если хотите купить что-то, чего не было в ваших
+        планах, возьмите паузу, как минимум, на сутки. За это время вы сможете трезво оценить,
+        действительно ли вам нужна эта вещь
       </Notifications>
-      <Notifications title="Уведомление" />
+      {/* <Notifications title="Уведомление">Пользователь Артем пригласил вас в общий бюджет</Notifications> */}
       <Notifications title="Подсказка">
         Рекомендуем снизить расходы по категории Развлечения
       </Notifications>
-      <Notifications title="Уведомление" />
-      <Notifications title="Подсказка">
+      {/* <Notifications title="Уведомление" /> */}
+      {/* <Notifications title="Подсказка">
         Рекомендуем снизить расходы по категории Развлечения
-      </Notifications>
+      </Notifications> */}
     </NotificationMenu>
   );
 }
