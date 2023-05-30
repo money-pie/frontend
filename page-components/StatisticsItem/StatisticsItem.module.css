@@ -1,0 +1,123 @@
+.main-target {
+  position: fixed;
+  top: 12%;
+  right: 1.5%;
+  left: 1.5%;
+
+  display: flex;
+  align-items: center;
+
+  width: 100fr;
+  height: 45vh;
+}
+
+.main-wrapper {
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+}
+
+.donut-chart {
+  min-width: 40%;
+  height: 90%;
+  margin-right: 5vw;
+}
+
+.category {
+  position: relative;
+
+  min-width: 50%;
+  height: 90%;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 20%;
+  margin-bottom: 1%;
+
+  font-size: 3.5vmin;
+}
+
+.category-body {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.category button {
+  width: 27%;
+  height: 8vmin;
+  margin-right: 2vw;
+  margin-bottom: 2vh;
+
+  cursor: pointer;
+
+  text-align: center;
+
+  color: var(--faint-weak);
+  border: 3px solid var(--faint-weak);
+  border-radius: 1.35rem;
+  background: none;
+
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
+
+  font-size: 3.5vmin;
+}
+
+.category button:hover {
+  transition: 0.3s all ease-in-out;
+  transform: scale(0.96);
+
+  color: var(--accent-weak);
+  border-color: var(--accent-weak);
+}
+
+.category button.selected {
+  color: var(--accent-weak);
+  border-color: var(--accent-strong);
+}
+
+.category button.selected-expense {
+  color: var(--accent-weak);
+  border-color: var(--complement-weak);
+}
+
+.select {
+  margin-right: 1vw;
+
+  cursor: pointer;
+
+  color: var(--faint-weak);
+  border: none;
+  background: none;
+}
+
+.select:hover {
+  transition: 0.3s all ease-in-out;
+
+  color: var(--accent-weak);
+}
+
+.select:focus {
+  transition: 0.3s all ease-in-out;
+
+  color: var(--accent-weak);
+}
+
+.select-item {
+  color: var(--accent-weak);
+  background-color: var(--faint-strong);
+
+  font-family: var(--font-family);
+  font-size: 100%;
+}
