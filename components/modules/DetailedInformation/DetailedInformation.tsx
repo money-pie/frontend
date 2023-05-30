@@ -16,7 +16,7 @@ function DetailedInformation({ active, onClose }: DetailedInformationProps): JSX
 
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
-      <Htag className={styles.h2} tag="h2">
+      <Htag className={styles.h5} tag="h5">
         Подробная информация
       </Htag>
       <div className={styles.columns}>
