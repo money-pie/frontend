@@ -1,58 +1,78 @@
 import Head from "next/head";
-import { useState } from "react";
-import Htag from "../components/elements/Htag/Htag";
-import Button from "../components/elements/Button/Button";
-import Input from "../components/elements/Input/Input";
+import React, { useState, KeyboardEvent } from "react";
+import { withLayout } from "../layout/Layout";
+import { MenuItem } from "../page-components/MenuItem/MenuItem";
+import { MainTarget } from "../page-components/MainTarget/MainTarget";
+import DemoMode from "../page-components/DemoMode/DemoMode";
+import PlusIcon from "../page-components/PlusIcon/plusIcon.svg";
+import styles from "../page-components/MainTarget/PlusIcon.module.css";
 import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
+import MainComponent from "../page-components/MainComponent/MainComponent";
 
-export default function Home(): JSX.Element {
-  const [showModal, setShowModal] = useState<boolean>(false);
+function Home(): JSX.Element {
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // пользователь зарегистрирован или нет
+
+  const [showExpenseIncomeWindow, setShowExpenseIncomeWindow] = useState<boolean>(false);
 
   const closeModal = () => {
-    setShowModal(false);
+    setShowExpenseIncomeWindow(false);
   };
 
+  function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
+    if (event.key === "Enter") {
+      setShowExpenseIncomeWindow(true);
+    }
+  }
+
   return (
-    <div>
-      <Htag tag="h1">MoneyPie</Htag>
-      <Htag tag="h2">Цель на месяц</Htag>
-      <Htag tag="h3">Продукты</Htag>
-      <Htag tag="h4">Подсказка</Htag>
+    <>
+      <MainTarget />
 
-      <Input appearance="normal" placeholder="Сумма" />
+      <MenuItem>
+        <MainComponent title="Развлечения" sum={1200}>
+          19 марта 2023
+        </MainComponent>
+        <MainComponent title="Продукты" sum={3479}>
+          19 марта 2023
+        </MainComponent>
+        <MainComponent title="Зарплата" sum={15000}>
+          19 марта 2023
+        </MainComponent>
+        <MainComponent title="Транспорт" sum={118}>
+          19 марта 2023
+        </MainComponent>
+        <MainComponent title="Продукты" sum={1000}>
+          19 марта 2023
+        </MainComponent>
+        <MainComponent title="Продажа" sum={2450}>
+          19 марта 2023
+        </MainComponent>
+        <MainComponent title="Здоровье" sum={1200}>
+          19 марта 2023
+        </MainComponent>
+      </MenuItem>
 
-      <Button appearance="premium" className="rounded" btnType="button">
-        Купить
-      </Button>
-      <Button appearance="ghost" className="rounded" btnType="button">
-        Статистика
-      </Button>
-      <Button appearance="casual" className="rounded" btnType="button">
-        Установить
-      </Button>
-      <Button appearance="ordinary" className="rounded" btnType="button">
-        Да
-      </Button>
-      <Button
-        appearance="ordinary"
-        className="rounded"
-        btnType="button"
-        onClick={() => {
-          setShowModal(true);
-        }}
-      >
-        Проверить модальное окно
-      </Button>
-      {/* <QuestionModalWindow active={showModal} onClose={closeModal} text="сменить имя пользователя?"/> */}
-      {/* <SubscriptionBanner active={showModal} onClose={closeModal} /> */}
-      {/* <SubscriptionRenewal active={showModal} onClose={closeModal} /> */}
-      {/* <TargetAdding active={showModal} onClose={closeModal} /> */}
-      {/* <AutorizationForm active={showModal} onClose={closeModal} /> */}
-      {/* <RegistrationForm active={showModal} onClose={closeModal} /> */}
-
-      {/* <FriendInvitation active={showModal} onClose={closeModal} /> */}
-      {/* <DetailedInformation active={showModal} onClose={closeModal} /> */}
-      <ExpenseAndIncomeWindow active={showModal} onClose={closeModal} />
-    </div>
+      {!isLoggedIn ? null : (
+        <div>
+          <span
+            role="button"
+            className={styles["plus-icon"]}
+            onClick={() => {
+              setShowExpenseIncomeWindow(true);
+            }}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+          >
+            <PlusIcon />
+          </span>
+          <div className={styles["custom-modal"]}>
+            <ExpenseAndIncomeWindow active={showExpenseIncomeWindow} onClose={closeModal} />
+          </div>
+        </div>
+      )}
+      {isLoggedIn ? null : <DemoMode />}
+    </>
   );
 }
+
+export default withLayout(Home, "hidden");

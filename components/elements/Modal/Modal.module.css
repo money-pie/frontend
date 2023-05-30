@@ -26,7 +26,10 @@
 }
 
 .modal-content {
-  /* overflow-x: auto; */
+  position: relative;
+  z-index: 9999;
+
+  overflow-x: auto;
 
   box-sizing: border-box;
   width: auto;
@@ -44,7 +47,7 @@
   border: 3px solid var(--accent-weak);
   border-radius: 1.75rem;
   background: var(--base-strong-shadow);
-  box-shadow: 10px 20px 21px var(--base-strong-shadow);
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
 }
 
 .modal-content.active {
@@ -63,7 +66,7 @@
   text-align: center;
   word-wrap: break-word;
 
-  font-size: 40px;
+  font-size: 5vmin;
 }
 
 .close-cross svg {

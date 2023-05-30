@@ -1,0 +1,68 @@
+.notifications {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 36%;
+  margin-bottom: 5vh;
+
+  border: 3px solid var(--accent-weak);
+  border-radius: 1.5em;
+  background: var(--base-strong-shadow);
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
+}
+
+.notifications-text p {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+
+  margin-right: 2vh;
+  margin-bottom: 4vh;
+  margin-left: 2vh;
+
+  text-align: center;
+
+  color: var(--faint-weak);
+
+  font-size: 2.5vh;
+}
+
+.h4 {
+  margin-top: 0;
+  margin-bottom: 1vh;
+
+  text-align: center;
+
+  color: var(--accent-weak);
+
+  font-size: 4vh;
+}
+
+.close-cross svg {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  display: inline-block;
+
+  width: 1.5rem;
+  height: 1.5rem;
+
+  cursor: pointer;
+  fill: var(--faint-weak);
+}
+
+.close-cross:focus svg {
+  fill: var(--accent-weak);
+}
+
+.close-cross:hover svg {
+  transition: 0.3s all;
+  transform: rotate(90deg);
+}

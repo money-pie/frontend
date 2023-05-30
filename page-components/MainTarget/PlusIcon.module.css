@@ -1,0 +1,28 @@
+.plus-icon svg {
+  position: fixed;
+  z-index: auto;
+  right: 1%;
+  bottom: 0;
+
+  width: 12vh;
+
+  margin-right: 1%;
+  margin-bottom: 1%;
+
+  cursor: pointer;
+}
+
+.custom-modal {
+  position: relative;
+  z-index: 7;
+}
+
+.plus-icon:focus svg {
+  transition: all 0.3s;
+  transform: scale(0.9);
+}
+
+.plus-icon:hover svg {
+  transition: 0.3s all;
+  transform: rotate(90deg);
+}

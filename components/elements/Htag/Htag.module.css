@@ -1,7 +1,7 @@
 .h1 {
   color: inherit;
 
-  font-size: 46px;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 56px;
 }
@@ -33,9 +33,8 @@
 .h5 {
   color: inherit;
 
-  font-size: 46px;
   font-weight: 600;
-  line-height: 56px;
+  line-height: 3rem;
 }
 
 .h6 {

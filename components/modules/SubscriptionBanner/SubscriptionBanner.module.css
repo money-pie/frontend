@@ -5,11 +5,13 @@
   justify-content: space-between;
 }
 
-.h2 {
+.h5 {
   display: block;
 
   margin-top: -1.7em;
   margin-bottom: 1em;
+
+  color: var(--accent-weak);
 
   font-size: 2rem;
 }

@@ -1,6 +1,8 @@
 .btn-wrapper {
   display: flex;
   justify-content: space-between;
+
+  padding-bottom: 3rem;
 }
 
 .custom-button {
@@ -8,4 +10,10 @@
   height: 77px;
   margin-top: 1.5em;
   margin-inline: 30px;
+}
+
+.custom-text {
+  padding-top: 3rem;
+
+  color: var(--accent-weak);
 }

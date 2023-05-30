@@ -1,0 +1,73 @@
+.menuitem {
+  position: absolute;
+  z-index: auto;
+  right: 1.5%;
+  bottom: 0;
+  left: 1.5%;
+
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+
+  width: 100fr;
+  height: 40vh;
+  padding-right: 2vmin;
+
+  padding-left: 2vmin;
+
+  transition: height 0.3s ease-in-out;
+
+  border-radius: 1.5em 1.5em 0 0;
+  background: var(--faint-strong);
+}
+
+.menuitem svg {
+  width: 4.5vmin;
+  margin-top: -4vh;
+
+  cursor: pointer;
+}
+
+.menuitem.expanded svg {
+  transition: 0.4s all ease-in-out;
+  transform: rotate(180deg);
+}
+
+.menuitem.expanded {
+  height: 87vh;
+}
+
+.menuitem-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-top: 1vmin;
+
+  padding-right: 3vmin;
+
+  padding-left: 3vmin;
+
+  color: var(--faint-weak);
+
+  font-size: 1.1rem;
+}
+
+.menuitem-content-private {
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+
+  padding-right: 1.7vw;
+}
+
+.menuitem-content-wrapper div {
+  position: relative;
+
+  display: flex;
+
+  width: 100fr;
+}

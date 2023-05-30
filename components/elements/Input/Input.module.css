@@ -1,7 +1,8 @@
 .input {
   width: 100%;
   max-width: calc(100% - 20px);
-  height: 4rem;
+
+  /* height: 4rem; */
   padding: 1vh;
 
   color: var(--accent-weak);
@@ -21,7 +22,8 @@
 
 .ghost {
   width: 35rem;
-  height: 5rem;
+
+  /* height: 5rem; */
 
   border: none;
   border-bottom: 2px solid var(--faint-weak);

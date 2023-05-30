@@ -16,7 +16,7 @@ function QuestionModalWindow({ active, onClose, text }: QuestionModalWindowProps
 
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
-      <div>
+      <div className={styles["custom-text"]}>
         Вы уверены, что хотите <span style={{ color: "var(--accent-strong)" }}>{text}</span>
       </div>
       <div className={styles["btn-wrapper"]}>

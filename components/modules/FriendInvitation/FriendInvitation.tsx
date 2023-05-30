@@ -19,7 +19,7 @@ function FriendInvitation({ active, onClose }: FriendInvitationProps): JSX.Eleme
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
       <div className={styles.first}>
-        <Htag className={styles.h2} tag="h2">
+        <Htag className={styles.h5} tag="h5">
           MoneyPie
         </Htag>
         <div className={styles["first-image"]}>

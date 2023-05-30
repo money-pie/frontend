@@ -2,7 +2,8 @@
 
 :root {
   --base-strong: #141516;
-  --base-strong-shadow: #141516 20%;
+  --base-strong-shadow: #141516 40%;
+  --base-strong-box-shadow: rgb(0 0 0 / 25%);
   --base-weak: #FFF;
   --faint-strong: #363636;
   --faint-weak: #A29581;

@@ -1,0 +1,62 @@
+.main-component {
+  position: absolute;
+
+  right: 1%;
+  left: 1%;
+
+  display: flex;
+
+  width: 100fr;
+  height: 15vh;
+  padding-right: 2vmin;
+
+  padding-left: 2vmin;
+}
+
+.space-row {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.space-row span {
+  width: 20vmin;
+
+  text-align: right;
+
+  font-size: 4vmin;
+}
+
+.icon-size img {
+  width: 83%;
+  height: 15vh;
+}
+
+.column {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  width: 85%;
+  height: 100%;
+  padding-bottom: 2rem;
+}
+
+.column p {
+  color: var(--faint-weak);
+}
+
+.column h3 {
+  margin-bottom: -1rem;
+
+  font-size: 5vmin;
+}

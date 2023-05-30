@@ -6,10 +6,10 @@
   transition: all 0.2s ease;
 
   border: none;
-  box-shadow: 10px 20px 21px var(--base-strong-shadow);
+  box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
 
   /* font-size: 40px; */
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .button:active {

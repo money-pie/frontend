@@ -17,8 +17,8 @@ function TargetAdding({ active, onClose }: TargetAddingProps): JSX.Element {
 
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
-      <Htag className={styles.h2} tag="h2">
-        MoneyPie
+      <Htag className={styles.h5} tag="h5">
+        Цель на месяц
       </Htag>
       <div className={styles.first}>
         <Input className={styles.input} type="number" appearance="ghost" placeholder="Сумма" />

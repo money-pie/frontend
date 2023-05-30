@@ -1,0 +1,89 @@
+.profile-icon-main {
+  position: fixed;
+  z-index: 1;
+  top: 3.7rem;
+  right: 1.5%;
+  left: 1.5%;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100fr;
+  height: 41%;
+}
+
+.plus-profile svg {
+  margin-left: 2vh;
+
+  /* width: 25vmin; */
+  cursor: pointer;
+}
+
+.mail-copy svg {
+  position: relative;
+
+  margin-left: 1rem;
+
+  cursor: pointer;
+}
+
+.plus-profile:hover svg {
+  transition: 0.3s all ease;
+  transform: scale(0.95);
+}
+
+.img-profile {
+  margin-left: 2vmin;
+
+  /* width: 25vmin; */
+}
+
+.row-elements {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.profile-icon-footer {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1vh;
+  padding-right: 2rem;
+  padding-left: 2rem;
+
+  color: var(--faint-weak);
+
+  font-size: 3vh;
+}
+
+.premium-pluses {
+  margin-left: 2vh;
+
+  /* width: 25vmin; */
+  cursor: pointer;
+}
+
+.footer-container {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.mail-copy:hover svg {
+  transition: 0.3s all ease;
+  transform: scale(0.95);
+}
+
+.custom-modal {
+  position: relative;
+  z-index: 5;
+}

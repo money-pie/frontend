@@ -22,7 +22,7 @@ function SubscriptionBanner({ active, onClose }: SubscriptionBannerProps): JSX.E
   return (
     <Modal active={active} closeCross="none" onClose={closeModal}>
       <div className={styles["banner-wrapper"]}>
-        <Htag className={styles.h2} tag="h2">
+        <Htag className={styles.h5} tag="h5">
           MoneyPie
         </Htag>
         <div className={styles.columns}>
