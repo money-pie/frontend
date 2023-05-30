@@ -17,7 +17,7 @@ function TargetAdding({ active, onClose }: TargetAddingProps): JSX.Element {
 
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
-      <Htag className={styles.h3} tag="h3">
+      <Htag className={styles.h5} tag="h5">
         Цель на месяц
       </Htag>
       <div className={styles.first}>
