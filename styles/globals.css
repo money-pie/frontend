@@ -38,16 +38,32 @@ body {
   font-weight: 600;
 }
 
-a {
-  text-decoration: none;
-
-  color: inherit;
-}
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+  scrollbar-color: var(--faint-weak) var(--faint-strong-up);
+  scrollbar-width: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0.75vmin;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 1.75rem;
+  background: var(--faint-strong-up);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1.75rem;
+  background-color: var(--faint-weak);
+}
+
+a {
+  text-decoration: none;
+
+  color: inherit;
 }
 
 .rounded {
