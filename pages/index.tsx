@@ -10,7 +10,8 @@ import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow
 import MainComponent from "../page-components/MainComponent/MainComponent";
 
 function Home(): JSX.Element {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // пользователь зарегистрирован или нет
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // пользователь зарегистрирован или нет
+  // const userStatus = process.env.REACT_APP_USER_STATUS;
 
   const [showExpenseIncomeWindow, setShowExpenseIncomeWindow] = useState<boolean>(false);
 
