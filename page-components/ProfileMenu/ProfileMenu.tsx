@@ -51,7 +51,7 @@ function ProfileMenu({
             onKeyDown={handleKeyDown}
             tabIndex={0}
           >
-            Управления подпиской
+            Управление подпиской
           </a>
         </Link>
         <div className={styles["custom-modal"]}>
