@@ -56,11 +56,13 @@
   height: 4.7rem;
 }
 
-.input[type="number"]::-webkit-outer-spin-button,
-.input[type="number"]::-webkit-inner-spin-button {
-  appearance: none;
+.input[type="number"] {
+  appearance: textfield;
+}
 
-  margin: 0;
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
 }
 
 .row button:hover {
@@ -95,7 +97,7 @@
 
 .input-date {
   width: 50%;
-  height: 2%;
+  height: 5vh;
 
   cursor: text;
   text-align: center;
