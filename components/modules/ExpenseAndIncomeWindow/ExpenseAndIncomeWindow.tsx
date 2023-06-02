@@ -43,12 +43,7 @@ function ExpenseAndIncomeWindow({ active, onClose }: ExpenseAndIncomeWindowProps
       {activeLink === 1 ? (
         <div className={styles["row-input"]}>
           <Input className={styles.input} type="number" appearance="ghost" placeholder="Сумма" />
-          <Input
-            className={styles["input-date"]}
-            type="date"
-            appearance="ghost"
-            placeholder="Дата"
-          />
+          <input className={styles["input-date"]} type="date" placeholder="Дата" />
           <div>
             <ExpenseIconsContainer />
           </div>
@@ -57,12 +52,7 @@ function ExpenseAndIncomeWindow({ active, onClose }: ExpenseAndIncomeWindowProps
       ) : (
         <div className={styles["row-input"]}>
           <Input className={styles.input} type="number" appearance="ghost" placeholder="Сумма" />
-          <Input
-            className={styles["input-date"]}
-            type="date"
-            appearance="ghost"
-            placeholder="Дата"
-          />
+          <input className={styles["input-date"]} type="date" placeholder="Дата" />
           <div>
             <IncomeIconsContainer />
           </div>

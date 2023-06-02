@@ -14,6 +14,7 @@ function StatisticsItem({
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
   const [selectedIncome, setSelectedIncome] = useState("Доходы");
   const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
 
   const handleIncomeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     // setSelectedIncome(event.target.value);
@@ -24,6 +25,10 @@ function StatisticsItem({
 
   const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedMonth(event.target.value);
+  };
+
+  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedYear(event.target.value);
   };
 
   const chartDataIncome = [40, 30, 50, 60, 30];
@@ -94,6 +99,17 @@ function StatisticsItem({
               </option>
               <option className={styles["select-item"]} value="march">
                 Март
+              </option>
+            </select>
+            <select className={styles.select} value={selectedYear} onChange={handleYearChange}>
+              <option className={styles["select-item"]} value="2023">
+                2023
+              </option>
+              <option className={styles["select-item"]} value="2022">
+                2022
+              </option>
+              <option className={styles["select-item"]} value="2021">
+                2021
               </option>
             </select>
           </div>
