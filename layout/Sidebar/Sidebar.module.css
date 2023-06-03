@@ -65,11 +65,56 @@
 .custom-button {
   display: block;
 
-  width: 50vh;
+  width: 50vmin;
   height: 10vh;
   margin-top: 1.5em;
 
   box-shadow: 10px 20px 21px var(--base-strong-box-shadow);
 
   font-size: 3.2vh;
+}
+
+.close-cross svg {
+  position: absolute;
+  top: 1.5rem;
+  right: -11.5rem;
+
+  width: 5vmin;
+  height: 5vmin;
+  fill: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100vw;
+
+    border-radius: 0;
+  }
+
+  .menu {
+    font-size: 4vmin;
+  }
+
+  .custom-button {
+    width: 75vw;
+  }
+
+  .close-cross svg {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+
+    display: inline-block;
+
+    width: 4vmin;
+    height: 4vmin;
+
+    cursor: pointer;
+    fill: var(--base-strong);
+  }
+
+  .close-cross:hover svg {
+    transition: 0.3s all;
+    transform: rotate(90deg);
+  }
 }

@@ -76,7 +76,7 @@ export function Header({ visible, className, ...props }: HeaderProps): JSX.Eleme
           id="sidebar"
           className={cn(styles.sidebar, { [styles["sidebar-open"]]: isSidebarOpen })}
         >
-          <Sidebar isPremiumActive={isPremiumActive} />
+          <Sidebar onClose={() => setIsSidebarOpen(false)} isPremiumActive={isPremiumActive} />
         </div>
         {isSidebarOpen && (
           <div
