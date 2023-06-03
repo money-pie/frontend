@@ -8,15 +8,20 @@ import PlusIcon from "../page-components/PlusIcon/plusIcon.svg";
 import styles from "../page-components/MainTarget/PlusIcon.module.css";
 import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 import MainComponent from "../page-components/MainComponent/MainComponent";
+import { getServerURL } from '../lib/api';
 
-function Home(): JSX.Element {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // пользователь зарегистрирован или нет
-  // const userStatus = process.env.REACT_APP_USER_STATUS;
+function Home({ user, transactions }: any): JSX.Element {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [showExpenseIncomeWindow, setShowExpenseIncomeWindow] = useState<boolean>(false);
+  const [showDetailedInfo, setShowDetailedInfo] = useState<boolean>(false);
 
   const closeModal = () => {
     setShowExpenseIncomeWindow(false);
+  };
+
+  const closeInfoModal = () => {
+    setShowDetailedInfo(false);
   };
 
   function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
@@ -27,30 +32,15 @@ function Home(): JSX.Element {
 
   return (
     <>
-      <MainTarget />
-
+      <MainTarget demo={!isLoggedIn} aim={user.aim}/>
       <MenuItem>
-        <MainComponent title="Развлечения" sum={1200}>
-          19 марта 2023
-        </MainComponent>
-        <MainComponent title="Продукты" sum={3479}>
-          19 марта 2023
-        </MainComponent>
-        <MainComponent title="Зарплата" sum={15000}>
-          19 марта 2023
-        </MainComponent>
-        <MainComponent title="Транспорт" sum={118}>
-          19 марта 2023
-        </MainComponent>
-        <MainComponent title="Продукты" sum={1000}>
-          19 марта 2023
-        </MainComponent>
-        <MainComponent title="Продажа" sum={2450}>
-          19 марта 2023
-        </MainComponent>
-        <MainComponent title="Здоровье" sum={1200}>
-          19 марта 2023
-        </MainComponent>
+        {
+          transactions.map((transaction: any) =>
+            <MainComponent transaction={transaction} title={transaction.category} id={transaction.id} sum={transaction.sum}>
+              {transaction.date}
+            </MainComponent>
+          )
+        }
       </MenuItem>
 
       {!isLoggedIn ? null : (
@@ -72,8 +62,37 @@ function Home(): JSX.Element {
         </div>
       )}
       {isLoggedIn ? null : <DemoMode />}
+
     </>
   );
+}
+
+export async function getStaticProps() {
+  let user = undefined;
+  let transactions = undefined;
+
+  try {
+    let userResponse = await fetch(getServerURL("/demo/user"));
+    user = await userResponse.json();
+
+    let transactionResponse = await fetch(getServerURL("/demo/all/true"));
+    transactions = await transactionResponse.json();
+  } catch (error) {
+    return {
+      props: {
+        user: null,
+        transactions: null,
+        // error: error,
+      },
+    };
+  }
+
+  return {
+    props: {
+      user: user,
+      transactions: transactions,
+    },
+  };
 }
 
 export default withLayout(Home, "hidden");

@@ -25,16 +25,36 @@ export function MainTarget({ className, ...props }: MainTargetProps): JSX.Elemen
 
   return (
     <div className={cn(className, styles["main-target"])} {...props}>
-      <span
-        role="button"
-        onClick={() => {
-          setShowModal(true);
-        }}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-      >
-        <Htag tag="h2"> Цель на месяц</Htag>
-      </span>
+      {
+        props.demo
+          ?
+          <span>
+            {
+              props.aim
+                ?
+                <Htag tag="h2">{props.aim} ₽/месяц</Htag>
+                :
+                <Htag tag="h2">Установить цель</Htag>
+            }
+          </span>
+          :
+          <span
+            role="button"
+            onClick={() => {
+              setShowModal(true);
+            }}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+          >
+            {
+              props.aim
+                ?
+                <Htag tag="h2">{props.aim} ₽/месяц</Htag>
+                :
+                <Htag tag="h2">Установить цель</Htag>
+            }
+          </span>
+      }
       <div className={styles["target-row"]}>
         <div className={styles["target-line"]} />
         <Button

@@ -53,6 +53,8 @@
 
 .column p {
   color: var(--faint-weak);
+
+  font-size: 2.2vmin;
 }
 
 .column h3 {

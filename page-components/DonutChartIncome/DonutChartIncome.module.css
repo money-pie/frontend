@@ -36,3 +36,9 @@
 
   color: var(--accent-strong);
 }
+
+@media (max-width: 768px) {
+  .chart-title {
+    font-size: 5vmin;
+  }
+}

@@ -4,6 +4,7 @@ import Head from "next/head";
 import React from "react";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+
   return (
     <>
       <Head>

@@ -6,7 +6,6 @@ import {
   Legend,
   Tooltip,
   DoughnutController,
-  ChartTypeRegistry,
 } from "chart.js";
 import styles from "./DonutChartExpense.module.css";
 
@@ -18,9 +17,8 @@ type DonutChartExpenseProps = {
   onCellClick: (label: string | null) => void;
   selectedButtonIndex: number | null;
   setSelectedButton: (buttonIndex: number | null) => void;
+  sum?: number | null;
 };
-
-// type DoughnutData = any;
 
 type DoughnutData = {
   data: number[];
@@ -39,9 +37,9 @@ function DonutChartExpense({
   onCellClick,
   selectedButtonIndex,
   setSelectedButton,
+  sum,
 }: DonutChartExpenseProps): JSX.Element {
   const chartRef = useRef<Chart<"doughnut"> | null>(null);
-
   const getChartColors = () => {
     const defaultColors = [
       "#A17BA4",
@@ -103,7 +101,7 @@ function DonutChartExpense({
         },
 
         options: {
-          cutout: 95,
+          cutout: "70%",
           animation: {
             animateRotate: true,
           },
@@ -131,6 +129,8 @@ function DonutChartExpense({
     }
   }, [data, onCellClick]);
 
+
+
   useEffect(() => {
     if (chartRef.current) {
       const datasets = chartRef.current.data.datasets as DoughnutData[];
@@ -153,8 +153,24 @@ function DonutChartExpense({
   return (
     <div className={styles["chart-container"]}>
       <div className={styles["chart-title"]}>
-        <p>Потрачено</p>
-        <span>12000р</span>
+        {sum
+          ?
+          <p>Потрачено</p>
+          :
+          <p>Вы не совершали трат за этот период</p>
+        }
+
+        {
+          selectedButtonIndex !== null && selectedButtonIndex >= 0
+            ?
+            <span>{data[selectedButtonIndex]}</span>
+            :
+            sum
+              ?
+              <span>{sum}</span>
+              :
+              <span></span>
+        }
       </div>
       <canvas id="donutChartCanvas" className={styles["chart-canvas"]} />
     </div>

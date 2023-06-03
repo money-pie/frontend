@@ -1,14 +1,16 @@
 import cn from "classnames";
-import React from "react";
+import React, { useState } from "react";
 import { MainComponentProps } from "./MainComponent.props";
 import styles from "./MainComponent.module.css";
 import Htag from "../../components/elements/Htag/Htag";
+import DetailedInformation from '../../components/modules/DetailedInformation/DetailedInformation';
 
 function MainComponent({
   className,
   children,
   title,
   sum,
+  id,
   ...props
 }: MainComponentProps): JSX.Element {
   interface IconData {
@@ -18,6 +20,7 @@ function MainComponent({
 
   const getIconByTitle = (category: string): IconData => {
     const titleLowercase = category.toLowerCase();
+
 
     if (titleLowercase.includes("продукты")) {
       return {
@@ -122,9 +125,14 @@ function MainComponent({
 
   const iconData = getIconByTitle(title);
   const { icon, color } = iconData;
+  const [showDetailedInfo, setShowDetailedInfo] = useState<boolean>(false);
+
+  const closeInfoModal = () => {
+    setShowDetailedInfo(false);
+  };
 
   return (
-    <div className={cn(className, styles["main-component"])} {...props}>
+    <div onClick={() => setShowDetailedInfo(true)} className={cn(className, styles["main-component"])} {...props}>
       <div className={styles["space-row"]}>
         <div className={styles["icon-size"]}>{icon}</div>
         <div className={styles.column}>

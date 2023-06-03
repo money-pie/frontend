@@ -18,6 +18,7 @@ type DonutChartIncomeProps = {
   onCellClick: (label: string | null) => void;
   selectedButtonIndex: number | null; // Добавляем пропс selectedButtonIndex
   setSelectedButton: (buttonIndex: number | null) => void;
+  sum?: number | null;
 };
 
 type DoughnutData = {
@@ -37,6 +38,7 @@ function DonutChartIncome({
   onCellClick,
   selectedButtonIndex,
   setSelectedButton,
+  sum,
 }: DonutChartIncomeProps): JSX.Element {
   const chartRef = useRef<Chart<"doughnut"> | null>(null);
 
@@ -89,7 +91,7 @@ function DonutChartIncome({
         },
 
         options: {
-          cutout: 95,
+          cutout: "70%",
           animation: {
             animateRotate: true,
           },
@@ -139,8 +141,24 @@ function DonutChartIncome({
   return (
     <div className={styles["chart-container"]}>
       <div className={styles["chart-title"]}>
-        <p>Заработано</p>
-        <span>9000р</span>
+        {sum
+          ?
+          <p>Заработано</p>
+          :
+          <p>Вы ничего не заработали за этот период</p>
+        }
+
+        {
+          selectedButtonIndex !== null && selectedButtonIndex >= 0
+            ?
+            <span>{data[selectedButtonIndex]}</span>
+            :
+            sum
+              ?
+              <span>{sum}</span>
+              :
+              <span></span>
+        }
       </div>
       <canvas id="donutChartCanvas" className={styles["chart-canvas"]} />
     </div>
