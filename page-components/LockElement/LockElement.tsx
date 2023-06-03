@@ -4,10 +4,13 @@ import { LockElementProps } from "./LockElement.props";
 import styles from "./LockElement.module.css";
 import Button from "../../components/elements/Button/Button";
 import LockIcon from "../LockIcon/lockIcon.svg";
+import { useRouter } from 'next/router';
 
 function LockElement({ className, ...props }: LockElementProps): JSX.Element {
+  const router = useRouter();
+
   const goToPage = () => {
-    window.location.href = "/invitationPage";
+      router.push("/invitationPage")
   };
 
   return (

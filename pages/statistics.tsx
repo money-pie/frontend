@@ -8,7 +8,7 @@ import { getServerURL } from '../lib/api';
 import { Category, Kind, Month, RuCategory } from '../types/constants';
 import { PieData, PieDataClass, Transaction, TransactionInfo, TransactionsInfo } from '../types/transaction.types';
 
-function StatisticsPage(): JSX.Element {
+function Statistics(): JSX.Element {
   const [selectedKind, setSelectedKind] = useState(Kind.INCOME); // State to track the selected category
   const [selectedMonth, setSelectedMonth] = useState<string | null>(Month.MAY); // State to track the selected category
   const [selectedYear, setSelectedYear] = useState<string | null>("2023"); // State to track the selected category
@@ -173,4 +173,32 @@ function StatisticsPage(): JSX.Element {
   );
 }
 
-export default withLayout(StatisticsPage, "visible", false);
+// export async function getServerSideProps() {
+//   let user = undefined;
+//   let transactions = undefined;
+
+//   try {
+//     let userResponse = await fetch(getServerURL("/demo/categories-info/{personal}/{kind}/{month}/{year}"));
+//     user = await userResponse.json();
+
+//     let transactionResponse = await fetch(getServerURL("/demo/all/true"));
+//     transactions = await transactionResponse.json();
+//   } catch (error) {
+//     return {
+//       props: {
+//         user: null,
+//         transactions: null,
+//         // error: error,
+//       },
+//     };
+//   }
+
+//   return {
+//     props: {
+//       user: user,
+//       transactions: transactions,
+//     },
+//   };
+// }
+
+export default withLayout(Statistics, "visible", true);

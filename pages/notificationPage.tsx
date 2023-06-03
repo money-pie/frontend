@@ -3,13 +3,14 @@ import { withLayout } from "../layout/Layout";
 import NotificationMenu from "../page-components/NotificationMenu/NotificationMenu";
 import Notifications from "../page-components/Notifications/Notifications";
 import DemoMode from "../page-components/DemoMode/DemoMode";
+import AuthGuard from '../components/guards/AuthGuard/AuthGuard';
 
 function NotificationPage(): JSX.Element {
   const isPremiumActive = false;
   const [isLoggedIn, setIsLoggedIn] = useState(false); // пользователь зарегистрирован или нет
 
   return (
-    <>
+    <AuthGuard>
       <NotificationMenu>
         <Notifications title="Совет">
           Попробуйте изменить отношение к покупкам. Если хотите купить что-то, чего не было в ваших
@@ -26,8 +27,8 @@ function NotificationPage(): JSX.Element {
       </Notifications> */}
       </NotificationMenu>
       {isLoggedIn ? null : <DemoMode />}
-    </>
+    </AuthGuard>
   );
 }
 
-export default withLayout(NotificationPage, "visible");
+export default withLayout(NotificationPage, "visible", true);

@@ -40,7 +40,7 @@ export function MenuItem({ className, children, ...props }: MenuItemProps): JSX.
         </div>
       ) : (
         <div className={styles["menuitem-content"]}>
-          <LockElement />
+            <LockElement/>
         </div>
       )}
       <ExpenseAndIncomeWindow active={showModal} onClose={closeModal} />

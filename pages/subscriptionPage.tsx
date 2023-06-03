@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthGuard from '../components/guards/AuthGuard/AuthGuard';
 import SubscriptionBanner from "../components/modules/SubscriptionBanner/SubscriptionBanner";
 
 function SubscriptionPage(): JSX.Element {
@@ -9,9 +10,11 @@ function SubscriptionPage(): JSX.Element {
   };
 
   return (
-    <div>
-      <SubscriptionBanner active={showModal} onClose={closeModal} />
-    </div>
+    <AuthGuard>
+      <div>
+        <SubscriptionBanner active={showModal} onClose={closeModal} />
+      </div>
+    </AuthGuard>
   );
 }
 

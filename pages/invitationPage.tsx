@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthGuard from '../components/guards/AuthGuard/AuthGuard';
 import FriendInvitation from "../components/modules/FriendInvitation/FriendInvitation";
 
 function InvitationPage(): JSX.Element {
@@ -9,9 +10,11 @@ function InvitationPage(): JSX.Element {
   };
 
   return (
-    <div>
-      <FriendInvitation active={showModal} onClose={closeModal} />
-    </div>
+    <AuthGuard>
+      <div>
+        <FriendInvitation active={showModal} onClose={closeModal} />
+      </div>
+    </AuthGuard>
   );
 }
 

@@ -9,9 +9,10 @@ import styles from "../page-components/MainTarget/PlusIcon.module.css";
 import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 import MainComponent from "../page-components/MainComponent/MainComponent";
 import { getServerURL } from '../lib/api';
+import AuthGuard from '../components/guards/AuthGuard/AuthGuard';
 
 function Home({ user, transactions }: any): JSX.Element {
-  const demo: boolean = true;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [showExpenseIncomeWindow, setShowExpenseIncomeWindow] = useState<boolean>(false);
   const [showDetailedInfo, setShowDetailedInfo] = useState<boolean>(false);
@@ -24,9 +25,15 @@ function Home({ user, transactions }: any): JSX.Element {
     setShowDetailedInfo(false);
   };
 
+  function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
+    if (event.key === "Enter") {
+      setShowExpenseIncomeWindow(true);
+    }
+  }
+
   return (
-    <>
-      <MainTarget demo={demo} aim={user.aim}/>
+    <AuthGuard>
+      <MainTarget demo={!isLoggedIn} aim={user.aim} />
       <MenuItem>
         {
           transactions.map((transaction: any) =>
@@ -36,8 +43,28 @@ function Home({ user, transactions }: any): JSX.Element {
           )
         }
       </MenuItem>
-      <DemoMode />
-    </>
+
+      {!isLoggedIn ? null : (
+        <div>
+          <span
+            role="button"
+            className={styles["plus-icon"]}
+            onClick={() => {
+              setShowExpenseIncomeWindow(true);
+            }}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+          >
+            <PlusIcon />
+          </span>
+          <div className={styles["custom-modal"]}>
+            <ExpenseAndIncomeWindow active={showExpenseIncomeWindow} onClose={closeModal} />
+          </div>
+        </div>
+      )}
+      {isLoggedIn ? null : <DemoMode />}
+
+    </AuthGuard>
   );
 }
 
@@ -56,6 +83,7 @@ export async function getStaticProps() {
       props: {
         user: null,
         transactions: null,
+        // error: error,
       },
     };
   }
@@ -68,4 +96,4 @@ export async function getStaticProps() {
   };
 }
 
-export default withLayout(Home, "hidden", false,);
+export default withLayout(Home, "hidden", true);

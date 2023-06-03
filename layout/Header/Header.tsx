@@ -93,15 +93,21 @@ export function Header({ visible, className, ...props }: HeaderProps): JSX.Eleme
       <Htag className={styles.h1} tag="h1">
         MoneyPie
       </Htag>
-      <span
-        role="button"
-        className={styles["right-bell"]}
-        onClick={handleBellClick}
-        onKeyDown={handleKeyDownForBell}
-        tabIndex={0}
-      >
-        <IconBell />
-      </span>
+      {
+        props.notifications
+        ?
+        <span
+          role="button"
+          className={styles["right-bell"]}
+          onClick={handleBellClick}
+          onKeyDown={handleKeyDownForBell}
+          tabIndex={0}
+        >
+          <IconBell />
+        </span>
+        :
+        <span></span>
+      }
     </header>
   );
 }

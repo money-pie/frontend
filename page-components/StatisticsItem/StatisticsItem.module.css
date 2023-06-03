@@ -136,7 +136,7 @@
   }
 }
 
-@media (max-width: 1078px) {
+@media (min-height: 890px) {
   .category button {
     width: 30%;
     height: 50px;
