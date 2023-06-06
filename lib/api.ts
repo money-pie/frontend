@@ -1,3 +1,4 @@
 export function getServerURL(path = "") {
-  return `${process.env.SERVER_URL || "http://localhost:5000"}${path}`;
+  const server = "https://production-moneypie.up.railway.app";
+  return `${server}${path}`;
 }
