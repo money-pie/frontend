@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const AuthGuard: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
+const TokenGuard: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
   const [isAuthenticated, setAuthenticated] = useState(false);
 
   const router = useRouter();
@@ -10,8 +10,8 @@ const AuthGuard: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
     const checkedAuth: boolean = checkAuthStatus();
 
     setAuthenticated(checkedAuth);
-    if (!checkedAuth) {
-      router.push("/authorizationPage");
+    if (checkedAuth) {
+      router.push("/main");
     }
   }, [isAuthenticated]);
 
@@ -21,7 +21,7 @@ const AuthGuard: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
   }
 
 
-  return isAuthenticated ? <>{children}</> : null;
+  return !isAuthenticated ? <>{children}</> : null;
 };
 
-export default AuthGuard;
+export default TokenGuard;
