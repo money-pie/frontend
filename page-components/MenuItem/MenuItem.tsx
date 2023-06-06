@@ -4,11 +4,15 @@ import { MenuItemProps } from "./MenuItem.props";
 import styles from "./MenuItem.module.css";
 import ExpenseAndIncomeWindow from "../../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 import LockElement from "../LockElement/LockElement";
+import { useAppContext } from '../../context/AppContext';
 
 export function MenuItem({ className, children, ...props }: MenuItemProps): JSX.Element {
+  const { page, updatePage, user, group } = useAppContext();
   const [activeLink, setActiveLink] = useState(1);
 
+
   const handleLinkClick = (linkNum: number) => {
+    updatePage(linkNum);
     setActiveLink(linkNum);
   };
 
@@ -39,9 +43,13 @@ export function MenuItem({ className, children, ...props }: MenuItemProps): JSX.
           <div className={styles["menuitem-content-wrapper"]}>{children}</div>
         </div>
       ) : (
-        <div className={styles["menuitem-content"]}>
-            <LockElement/>
-        </div>
+        user?.groupId && group
+          ?
+          <div className={styles["menuitem-content-private"]}>
+            <div className={styles["menuitem-content-wrapper"]}>{children}</div>
+          </div>
+          :
+          <LockElement />
       )}
       <ExpenseAndIncomeWindow active={showModal} onClose={closeModal} />
     </div>

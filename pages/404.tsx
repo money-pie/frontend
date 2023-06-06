@@ -1,12 +1,13 @@
 import React from "react";
-import Image from "next/image";
 import Htag from "../components/elements/Htag/Htag";
 import Button from "../components/elements/Button/Button";
 import styles from "../page-components/Errors/Error404.module.css";
+import { useRouter } from 'next/router';
 
 export function Error404(): JSX.Element {
+  const router = useRouter();
   const goToPage = () => {
-    window.location.href = "/";
+    router.push("/");
   };
 
   return (

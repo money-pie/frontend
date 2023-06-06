@@ -6,7 +6,6 @@ import {
   Legend,
   Tooltip,
   DoughnutController,
-  ChartTypeRegistry,
 } from "chart.js";
 import styles from "./DonutChartIncome.module.css";
 
@@ -16,7 +15,7 @@ type DonutChartIncomeProps = {
   data: number[];
   dataLabels: string[];
   onCellClick: (label: string | null) => void;
-  selectedButtonIndex: number | null; // Добавляем пропс selectedButtonIndex
+  selectedButtonIndex: number | null;
   setSelectedButton: (buttonIndex: number | null) => void;
   sum?: number | null;
 };
@@ -136,7 +135,7 @@ function DonutChartIncome({
 
   useEffect(() => {
     setSelectedButton(selectedButtonIndex);
-  }, [selectedButtonIndex, setSelectedButton]);
+  }, [selectedButtonIndex]);
 
   return (
     <div className={styles["chart-container"]}>

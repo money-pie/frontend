@@ -4,6 +4,7 @@ import Modal from "../../elements/Modal/Modal";
 import Button from "../../elements/Button/Button";
 import styles from "./SubscriptionBanner.module.css";
 import Htag from "../../elements/Htag/Htag";
+import { useAppContext } from '../../../context/AppContext';
 
 interface SubscriptionBannerProps {
   active: boolean;
@@ -11,9 +12,15 @@ interface SubscriptionBannerProps {
 }
 
 function SubscriptionBanner({ active, onClose }: SubscriptionBannerProps): JSX.Element {
+  const { createSub } = useAppContext();
   const closeModal = () => {
     onClose();
   };
+
+  const handleSubClick = () => {
+    createSub();
+    onClose()
+  }
 
   function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
     onClose();
@@ -53,6 +60,7 @@ function SubscriptionBanner({ active, onClose }: SubscriptionBannerProps): JSX.E
           appearance="premium"
           className={`${styles["custom-button"]} rounded`}
           btnType="submit"
+          onClick={handleSubClick}
         >
           Купить за 149р/мес
         </Button>

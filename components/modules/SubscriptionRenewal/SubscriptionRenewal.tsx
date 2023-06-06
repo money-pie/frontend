@@ -3,6 +3,7 @@ import Modal from "../../elements/Modal/Modal";
 import Button from "../../elements/Button/Button";
 import styles from "./SubscriptionRenewal.module.css";
 import Htag from "../../elements/Htag/Htag";
+import { useAppContext } from '../../../context/AppContext';
 
 interface SubscriptionRenewalProps {
   active: boolean;
@@ -13,6 +14,19 @@ function SubscriptionRenewal({ active, onClose }: SubscriptionRenewalProps): JSX
   const closeModal = () => {
     onClose();
   };
+
+  const {createSub, unSub} = useAppContext();
+
+  const handleUnSub = () => {
+    unSub();
+    onClose();
+  }
+
+  const handleSub = () => {
+    createSub();
+    onClose();
+  }
+
 
   return (
     <Modal active={active} closeCross="exist" onClose={closeModal}>
@@ -25,6 +39,7 @@ function SubscriptionRenewal({ active, onClose }: SubscriptionRenewalProps): JSX
           appearance="premium"
           className={`${styles["custom-button"]} rounded`}
           btnType="submit"
+          onClick={handleSub}
         >
           Продлить за 149р/мес
         </Button>
@@ -34,6 +49,7 @@ function SubscriptionRenewal({ active, onClose }: SubscriptionRenewalProps): JSX
         <Button
           appearance="ordinary"
           className={`${styles["custom-button-second"]} rounded`}
+          onClick={handleUnSub}
           btnType="submit"
         >
           Отказаться

@@ -7,6 +7,7 @@ import DonutChartExpense from "../DonutChartExpense/DonutChartExpense";
 import { getServerURL } from '../../lib/api';
 import { Kind, Month, MonthName } from '../../types/constants';
 import { PieData, PieDataClass, TransactionsInfo } from '../../types/transaction.types';
+import { useAppContext } from '../../context/AppContext';
 
 function StatisticsItem({
   className,
@@ -14,34 +15,63 @@ function StatisticsItem({
   onMonthChange,
   onYearChange,
   onCellClickIndex,
+  demo,
   ...props
 }: StatisticsItemProps): JSX.Element {
   const [selectedCell, setSelectedCell] = useState<string | null>(null);
   const [selectedButtonIndex, setSelectedButtonIndex] = useState<number | null>(null);
   const [selectedIncome, setSelectedIncome] = useState(Kind.INCOME);
-  const [selectedMonth, setSelectedMonth] = useState("may");
-  const [selectedYear, setSelectedYear] = useState("2023");
-  const [transactions, setTransactions] = useState<TransactionsInfo | null>(null); // Сохраняем данные транзакций в состоянии
+  let month: string;
+  let year: string;
+  if (demo) {
+    month = "may";
+    year = "2023";
+  } else {
+    const currentDate = new Date();
+    month = currentDate.toLocaleString("en-US", { month: "short" }).toLowerCase();
+    year = currentDate.getFullYear().toString();
+  }
+
+  let [selectedMonth, setSelectedMonth] = useState(month);
+  let [selectedYear, setSelectedYear] = useState(year);
+  const [transactions, setTransactions] = useState<TransactionsInfo | null>(null);
+  const {user, transactionQuery} = useAppContext();
+
+
 
   useEffect(() => {
-    fetchData();
-  }, [selectedIncome, selectedButtonIndex, selectedMonth, selectedYear]);
+    const fetchTransactions = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const response = await fetch(getServerURL(`/transactions/categories-info/${transactionQuery?.personal}/${selectedIncome}/${selectedMonth}/${selectedYear}`), {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-  async function fetchData() {
-    try {
-      const data = await fetchFiltered(selectedIncome, selectedButtonIndex, selectedMonth, selectedYear);
-      setTransactions(data); // Сохраняем данные в состоянии
-    } catch (error) {
-      console.error(error);
-    }
-  }
+          if (response.ok) {
+            const resp = await response.json();
+            setTransactions(resp);
+          } else {
+            const errorData = await response.json();
+          }
+        } catch (error: any) {
+        }
+      } else {
+        try {
+          let response = await fetch(getServerURL(`/demo/categories-info/${true}/${selectedIncome}/${selectedMonth}/${selectedYear}`));
+          let data = await response.json();
+          setTransactions(data);
+        } catch (error) {
+        }
+      }
 
-  async function fetchFiltered(selectedIncome: any, selectedButtonIndex: any, selectedMonth: any, selectedYear: any) {
-    const kind = selectedIncome;
-    let response = await fetch(getServerURL(`/demo/categories-info/${true}/${kind}/${selectedMonth}/${selectedYear}`));
-    let r = await response.json();
-    return r;
-  }
+    };
+
+    fetchTransactions();
+  }, [selectedCell, selectedMonth, selectedYear, selectedIncome]);
 
   const handleIncomeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const kind = event.target.value;
@@ -58,9 +88,6 @@ function StatisticsItem({
     setSelectedYear(event.target.value);
     onYearChange(event.target.value);
   };
-
-  // const chartDataIncome = [400, 30, 50, 60, 0];
-  // const chartLabelsIncome = ["Зарплата", "Награда", "Подарок", "Продажа", "Другое"];
 
   const arrPieData: PieData[] = [];
   if (transactions) {
@@ -101,9 +128,9 @@ function StatisticsItem({
               data={data}
               dataLabels={dataLabels}
               onCellClick={handleCellClick}
-              selectedButtonIndex={selectedButtonIndex} // Передаем selectedButtonIndex
+              selectedButtonIndex={selectedButtonIndex}
               setSelectedButton={setSelectedButtonIndex}
-              sum={transactions?.sum} // Обновляем setSelectedButtonIndex
+              sum={transactions?.sum} 
             />
           ) : (
             <DonutChartExpense
@@ -173,6 +200,15 @@ function StatisticsItem({
               </option>
               <option className={styles["select-item"]} value="2021">
                 2021
+              </option>
+              <option className={styles["select-item"]} value="2023">
+                2020
+              </option>
+              <option className={styles["select-item"]} value="2022">
+                2019
+              </option>
+              <option className={styles["select-item"]} value="2021">
+                2018
               </option>
             </select>
           </div>

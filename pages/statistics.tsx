@@ -7,15 +7,21 @@ import DemoMode from "../page-components/DemoMode/DemoMode";
 import { getServerURL } from '../lib/api';
 import { Category, Kind, Month, RuCategory } from '../types/constants';
 import { PieData, PieDataClass, Transaction, TransactionInfo, TransactionsInfo } from '../types/transaction.types';
+import { useAppContext } from '../context/AppContext';
+import Moment from 'react-moment';
+import 'moment/locale/ru';
 
 function Statistics(): JSX.Element {
-  const [selectedKind, setSelectedKind] = useState(Kind.INCOME); // State to track the selected category
-  const [selectedMonth, setSelectedMonth] = useState<string | null>(Month.MAY); // State to track the selected category
-  const [selectedYear, setSelectedYear] = useState<string | null>("2023"); // State to track the selected category
-  const [selectedCell, setSelectedCell] = useState<number>(-1); // State to track the selected category
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // пользователь зарегистрирован или нет
-  const [transactionsInfo, setTransactionsInfo] = useState<TransactionInfo[]>([]); // Сохраняем данные транзакций в состоянии
-  const [trn, setTransactions] = useState<Transaction[]>([]); // Сохраняем данные транзакций в состоянии
+  const currentDate = new Date();
+  const month: string = currentDate.toLocaleString("en-US", { month: "short" }).toLowerCase();
+  const [selectedKind, setSelectedKind] = useState(Kind.INCOME);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(month);
+  const [selectedYear, setSelectedYear] = useState<string | null>("2023");
+  const [selectedCell, setSelectedCell] = useState<number>(-1);
+  const [transactionsInfo, setTransactionsInfo] = useState<TransactionInfo[]>([]);
+  const [trn, setTransactions] = useState<Transaction[]>([]);
+  const { user, transactionQuery } = useAppContext();
+  const demo: boolean = false;
 
 
   const handleKindChange = (category: string) => {
@@ -35,86 +41,97 @@ function Statistics(): JSX.Element {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [selectedKind, selectedMonth, selectedYear]);
+    const fetchTransactions = async () => {
+      const token = localStorage.getItem("token");
+      if (token && user && user.id) {
+        try {
+          const response = await fetch(getServerURL(`/transactions/categories-info/${transactionQuery?.personal}/${selectedKind}/${selectedMonth}/${selectedYear}`), {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-  async function fetchData() {
-    try {
-      const data = await fetchInfo(selectedKind, selectedMonth, selectedYear);
-      setTransactionsInfo(data.transactionsInfo); // Сохраняем данные в состоянии
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
-  async function fetchInfo(selectedKind: any, selectedMonth: any, selectedYear: any) {
-    let response = await fetch(getServerURL(`/demo/categories-info/${true}/${selectedKind}/${selectedMonth}/${selectedYear}`));
-    let r = await response.json();
-    return r;
-  }
+          if (response.ok) {
+            const resp = await response.json();
+            setTransactionsInfo(resp.transactionsInfo);
+          } else {
+            const errorData = await response.json();
+          }
+        } catch (error: any) {
+        }
+      }
+
+    };
+
+    fetchTransactions();
+  }, [selectedCell, selectedMonth, selectedYear, selectedKind]);
+
 
   useEffect(() => {
-    fetchTransactions();
-  }, [selectedCell, selectedMonth, selectedYear]);
-
-  async function fetchTransactions() {
-    try {
-      const data = await fetchTrnsctn(selectedCell, selectedMonth, selectedYear);
-      setTransactions(data.transactions); // Сохраняем данные в состоянии
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function fetchTrnsctn(selectedCell: any, selectedMonth: any, selectedYear: any) {
-    let category = "salary";
+    const fetchListTransactions = async () => {
+      try {
+        let category = "salary";
+        const token = localStorage.getItem("token");
 
 
-    switch (dataLabels[selectedCell]) {
-      case RuCategory.PRODUCTS:
-        category = Category.PRODUCTS;
-        break;
-      case RuCategory.ENTERTAINMENT:
-        category = Category.ENTERTAINMENT;
-        break;
-      case RuCategory.TRANSPORT:
-        category = Category.TRANSPORT;
-        break;
-      case RuCategory.HEALTH:
-        category = Category.HEALTH;
-        break;
-      case RuCategory.HOME:
-        category = Category.HOME;
-        break;
-      case RuCategory.EDUCATION:
-        category = Category.EDUCATION;
-        break;
-      case RuCategory.FITNESS:
-        category = Category.FITNESS;
-        break;
-      case RuCategory.TAXES:
-        category = Category.TAXES;
-        break;
-      case RuCategory.SALARY:
-        category = Category.SALARY;
-        break;
-      case RuCategory.REWARD:
-        category = Category.REWARD;
-        break;
-      case RuCategory.PRESENT:
-        category = Category.PRESENT;
-        break;
-      case RuCategory.SALES:
-        category = Category.SALES;
-        break;
-      case RuCategory.OTHER:
-        category = Category.OTHER;
-        break;
-    }
-    let response = await fetch(getServerURL(`/demo/sort/${true}/${category}/${selectedMonth}/${selectedYear}`));
-    let r = await response.json();
-    return r;
-  }
+        switch (dataLabels[selectedCell]) {
+          case RuCategory.PRODUCTS:
+            category = Category.PRODUCTS;
+            break;
+          case RuCategory.ENTERTAINMENT:
+            category = Category.ENTERTAINMENT;
+            break;
+          case RuCategory.TRANSPORT:
+            category = Category.TRANSPORT;
+            break;
+          case RuCategory.HEALTH:
+            category = Category.HEALTH;
+            break;
+          case RuCategory.HOME:
+            category = Category.HOME;
+            break;
+          case RuCategory.EDUCATION:
+            category = Category.EDUCATION;
+            break;
+          case RuCategory.FITNESS:
+            category = Category.FITNESS;
+            break;
+          case RuCategory.TAXES:
+            category = Category.TAXES;
+            break;
+          case RuCategory.SALARY:
+            category = Category.SALARY;
+            break;
+          case RuCategory.REWARD:
+            category = Category.REWARD;
+            break;
+          case RuCategory.PRESENT:
+            category = Category.PRESENT;
+            break;
+          case RuCategory.SALES:
+            category = Category.SALES;
+            break;
+          case RuCategory.OTHER:
+            category = Category.OTHER;
+            break;
+        }
+        const response = await fetch(getServerURL(`/transactions/sort/${transactionQuery?.personal}/${category}/${selectedMonth}/${selectedYear}`), {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        setTransactions(data.transactions);
+      } catch (error) {
+
+      }
+    };
+
+    fetchListTransactions();
+  }, [selectedCell, selectedMonth, selectedYear, selectedKind]);
 
   const arrPieData: PieData[] = [];
   if (transactionsInfo) {
@@ -139,6 +156,7 @@ function Statistics(): JSX.Element {
           onKindChange={handleKindChange}
           onMonthChange={handleMonthChange}
           onYearChange={handleYearChange}
+          demo={demo}
         />
         <StatisticsMenu>
           {
@@ -160,7 +178,9 @@ function Statistics(): JSX.Element {
               } if (selectedCell >= 0 && trn.length > 0) {
                 return trn.map((transaction: Transaction) =>
                   <MainComponent transaction={transaction} title={transaction.category} id={transaction.id} sum={transaction.sum}>
-                    {transaction.date}
+                    <Moment locale="ru" format="ll">
+                      {transaction.date}
+                    </Moment>
                   </MainComponent>
                 );
               }
@@ -168,37 +188,8 @@ function Statistics(): JSX.Element {
           }
         </StatisticsMenu>
       </div>
-      {isLoggedIn ? null : <DemoMode />}
     </>
   );
 }
-
-// export async function getServerSideProps() {
-//   let user = undefined;
-//   let transactions = undefined;
-
-//   try {
-//     let userResponse = await fetch(getServerURL("/demo/categories-info/{personal}/{kind}/{month}/{year}"));
-//     user = await userResponse.json();
-
-//     let transactionResponse = await fetch(getServerURL("/demo/all/true"));
-//     transactions = await transactionResponse.json();
-//   } catch (error) {
-//     return {
-//       props: {
-//         user: null,
-//         transactions: null,
-//         // error: error,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       user: user,
-//       transactions: transactions,
-//     },
-//   };
-// }
 
 export default withLayout(Statistics, "visible", true);

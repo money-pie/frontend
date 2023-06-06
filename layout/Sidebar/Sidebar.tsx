@@ -1,11 +1,12 @@
 import cn from "classnames";
-import { useState } from "react";
 import Link from "next/link";
 import { SidebarProps } from "./Sidebar.props";
 import styles from "./Sidebar.module.css";
 import Button from "../../components/elements/Button/Button";
 import CloseCrossIcon from "../../components/elements/CloseCrossIcon/closeCross.svg";
 import React, { KeyboardEvent } from "react";
+import { useRouter } from 'next/router';
+import { useAppContext } from '../../context/AppContext';
 
 export function Sidebar({
   className,
@@ -13,9 +14,15 @@ export function Sidebar({
   onClose,
   ...props
 }: SidebarProps): JSX.Element {
+  const router = useRouter();
   const goToPage = () => {
-    window.location.href = "/subscriptionPage";
+    router.push("/subscriptionPage");
   };
+  let link: string = "/statisticsPage";
+  const { user } = useAppContext();
+  if (user) {
+    link = "statistics";
+  }
 
   function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
     if (event.key === "Escape") {
@@ -41,7 +48,7 @@ export function Sidebar({
         <Link href="/">
           <a href="#">Главная страница</a>
         </Link>
-        <Link href="/statisticsPage">
+        <Link href={link}>
           <a href="#">Статистика</a>
         </Link>
       </div>

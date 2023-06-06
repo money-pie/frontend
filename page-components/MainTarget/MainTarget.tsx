@@ -1,13 +1,17 @@
 import cn from "classnames";
-import React, { useState, KeyboardEvent } from "react";
+import React, { useState, KeyboardEvent, useEffect } from "react";
 import { MainTargetProps } from "./MainTarget.props";
 import styles from "./MainTarget.module.css";
 import Button from "../../components/elements/Button/Button";
 import Htag from "../../components/elements/Htag/Htag";
 import TargetAdding from "../../components/modules/TargetAdding/TargetAdding";
+import { useAppContext } from '../../context/AppContext';
+import { useRouter } from 'next/router';
 
 export function MainTarget({ className, ...props }: MainTargetProps): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const { user, group, transactionQuery } = useAppContext();
+  const router = useRouter();
 
   const closeModal = () => {
     setShowModal(false);
@@ -20,7 +24,11 @@ export function MainTarget({ className, ...props }: MainTargetProps): JSX.Elemen
   }
 
   const goToPage = () => {
-    window.location.href = "/statisticsPage";
+    if (user) {
+      router.push("/statistics");
+    } else {
+      router.push("/statisticsPage");
+    }
   };
 
   return (
@@ -47,11 +55,15 @@ export function MainTarget({ className, ...props }: MainTargetProps): JSX.Elemen
             tabIndex={0}
           >
             {
-              props.aim
+              transactionQuery?.personal
                 ?
-                <Htag tag="h2">{props.aim} ₽/месяц</Htag>
+                <Htag tag="h2">{user?.aim} ₽/месяц</Htag>
                 :
-                <Htag tag="h2">Установить цель</Htag>
+                user?.groupId
+                  ?
+                  <Htag tag="h2">{group?.aim} ₽/месяц</Htag>
+                  :
+                  <Htag tag="h2">Установить цель</Htag>
             }
           </span>
       }

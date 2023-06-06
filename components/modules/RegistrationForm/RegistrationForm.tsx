@@ -9,6 +9,7 @@ import { getServerURL } from '../../../lib/api';
 import { useRouter } from 'next/router';
 import { ToastContainer} from "react-toastify";
 import { showNotification } from '../../../utils/notification';
+import { useAppContext } from '../../../context/AppContext';
 
 interface RegistrationFormProps {
   active: boolean;
@@ -20,43 +21,19 @@ function RegistrationForm({ active, onClose }: RegistrationFormProps): JSX.Eleme
   const [email, setEmail] = useState<undefined | string>(undefined);
   const [password, setPassword] = useState<undefined | string>(undefined);
   const [errMessage, setErrMessage] = useState<undefined | string>(undefined);
-
+  const { reg} = useAppContext();
   const router = useRouter();
 
   const closeModal = () => {
-    window.location.href = "/";
+    router.push("/");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(getServerURL("/auth/registration"), {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ login, email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.token;
-
-        localStorage.setItem("token", token);
-        router.push("/");
-
-        console.log(data);
-      } else {
-        const errorData = await response.json();
-        setErrMessage(errorData.message)
-        showNotification(errMessage, "error")
-
-      }
-    } catch (error: any) {
-      setErrMessage(error.message)
-      showNotification(errMessage, "error")
-    }
+    if (login && email && password) {
+      reg(login, email, password)
+    };
   };
 
   return (

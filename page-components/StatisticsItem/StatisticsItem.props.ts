@@ -6,4 +6,5 @@ export interface StatisticsItemProps
   onMonthChange: (month: string) => void;
   onYearChange: (year: string) => void;
   onCellClickIndex: (index: number) => void;
+  demo: boolean,
 }

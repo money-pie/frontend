@@ -148,7 +148,7 @@ function DonutChartExpense({
 
   useEffect(() => {
     setSelectedButton(selectedButtonIndex);
-  }, [selectedButtonIndex, setSelectedButton]);
+  }, [selectedButtonIndex]);
 
   return (
     <div className={styles["chart-container"]}>

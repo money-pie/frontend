@@ -1,21 +1,29 @@
 import Head from "next/head";
-import React, { useState, KeyboardEvent } from "react";
-import { withLayout } from "../layout/Layout";
+import React, { useState, KeyboardEvent, useEffect } from "react";
+import { Layout } from "../layout/Layout";
 import { MenuItem } from "../page-components/MenuItem/MenuItem";
 import { MainTarget } from "../page-components/MainTarget/MainTarget";
-import DemoMode from "../page-components/DemoMode/DemoMode";
 import PlusIcon from "../page-components/PlusIcon/plusIcon.svg";
 import styles from "../page-components/MainTarget/PlusIcon.module.css";
 import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 import MainComponent from "../page-components/MainComponent/MainComponent";
 import { getServerURL } from '../lib/api';
 import AuthGuard from '../components/guards/AuthGuard/AuthGuard';
+import { useAppContext } from '../context/AppContext';
+import { TransactionResponse } from '../types/transaction.types';
+import Moment from 'react-moment';
+import 'moment/locale/ru';
 
-function Home({ user, transactions }: any): JSX.Element {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+
+function Home(): JSX.Element {
+  const demo: boolean = false;
   const [showExpenseIncomeWindow, setShowExpenseIncomeWindow] = useState<boolean>(false);
   const [showDetailedInfo, setShowDetailedInfo] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
+  const [transactionsLength, setTransactionsLength] = useState<number>(0);
+  const { transactions, group, transactionDto, user } = useAppContext();
+  const [arrTransaction, setArrTransaction] = useState<TransactionResponse[]>([]);
 
   const closeModal = () => {
     setShowExpenseIncomeWindow(false);
@@ -30,21 +38,55 @@ function Home({ user, transactions }: any): JSX.Element {
       setShowExpenseIncomeWindow(true);
     }
   }
+  ;
+
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      if (!(typeof transactionDto?.personal === 'undefined')) {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(getServerURL(`/transactions/all/${transactionDto.personal}`), {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (response.ok) {
+            const arrTrn: TransactionResponse[] = await response.json();
+            setArrTransaction(arrTrn);
+          } else {
+            const errorData = await response.json();
+          }
+        } catch (error: any) {
+        }
+      }
+    };
+
+    fetchTransactions();
+  }, [transactionDto?.personal, transactions]);
+
 
   return (
     <AuthGuard>
-      <MainTarget demo={!isLoggedIn} aim={user.aim} />
-      <MenuItem>
-        {
-          transactions.map((transaction: any) =>
-            <MainComponent transaction={transaction} title={transaction.category} id={transaction.id} sum={transaction.sum}>
-              {transaction.date}
-            </MainComponent>
-          )
-        }
-      </MenuItem>
-
-      {!isLoggedIn ? null : (
+      <Layout visible={"hidden"} notifications={user?.notification}>
+        <MainTarget demo={demo} />
+        <MenuItem demo={demo}>
+          {
+            arrTransaction
+              ?
+              arrTransaction.map((transaction: TransactionResponse) =>
+                <MainComponent transaction={transaction} title={transaction.category} id={transaction.id} sum={transaction.sum}>
+                  <Moment locale="ru" format="ll">
+                    {transaction.date}
+                  </Moment>
+                  {` ${transaction.description}`}
+                </MainComponent>
+              )
+              :
+              <></>
+          }
+        </MenuItem>
         <div>
           <span
             role="button"
@@ -61,39 +103,9 @@ function Home({ user, transactions }: any): JSX.Element {
             <ExpenseAndIncomeWindow active={showExpenseIncomeWindow} onClose={closeModal} />
           </div>
         </div>
-      )}
-      {isLoggedIn ? null : <DemoMode />}
-
+      </Layout>
     </AuthGuard>
   );
 }
 
-export async function getStaticProps() {
-  let user = undefined;
-  let transactions = undefined;
-
-  try {
-    let userResponse = await fetch(getServerURL("/demo/user"));
-    user = await userResponse.json();
-
-    let transactionResponse = await fetch(getServerURL("/demo/all/true"));
-    transactions = await transactionResponse.json();
-  } catch (error) {
-    return {
-      props: {
-        user: null,
-        transactions: null,
-        // error: error,
-      },
-    };
-  }
-
-  return {
-    props: {
-      user: user,
-      transactions: transactions,
-    },
-  };
-}
-
-export default withLayout(Home, "hidden", true);
+export default Home;

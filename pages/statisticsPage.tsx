@@ -6,16 +6,20 @@ import StatisticsItem from "../page-components/StatisticsItem/StatisticsItem";
 import DemoMode from "../page-components/DemoMode/DemoMode";
 import { getServerURL } from '../lib/api';
 import { Category, Kind, Month, RuCategory } from '../types/constants';
-import { PieData, PieDataClass, Transaction, TransactionInfo, TransactionsInfo } from '../types/transaction.types';
+import { PieData, PieDataClass, Transaction, TransactionInfo } from '../types/transaction.types';
+import TokenGuard from '../components/guards/AuthGuard/TokenGuard';
+import Moment from 'react-moment';
+import 'moment/locale/ru';
 
 function StatisticsPage(): JSX.Element {
-  const [selectedKind, setSelectedKind] = useState(Kind.INCOME); // State to track the selected category
-  const [selectedMonth, setSelectedMonth] = useState<string | null>(Month.MAY); // State to track the selected category
-  const [selectedYear, setSelectedYear] = useState<string | null>("2023"); // State to track the selected category
-  const [selectedCell, setSelectedCell] = useState<number>(-1); // State to track the selected category
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // пользователь зарегистрирован или нет
-  const [transactionsInfo, setTransactionsInfo] = useState<TransactionInfo[]>([]); // Сохраняем данные транзакций в состоянии
-  const [trn, setTransactions] = useState<Transaction[]>([]); // Сохраняем данные транзакций в состоянии
+  const [selectedKind, setSelectedKind] = useState(Kind.INCOME);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(Month.MAY);
+  const [selectedYear, setSelectedYear] = useState<string | null>("2023");
+  const [selectedCell, setSelectedCell] = useState<number>(-1);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [transactionsInfo, setTransactionsInfo] = useState<TransactionInfo[]>([]);
+  const [trn, setTransactions] = useState<Transaction[]>([]);
+  const demo: boolean = true;
 
 
   const handleKindChange = (category: string) => {
@@ -41,9 +45,8 @@ function StatisticsPage(): JSX.Element {
   async function fetchData() {
     try {
       const data = await fetchInfo(selectedKind, selectedMonth, selectedYear);
-      setTransactionsInfo(data.transactionsInfo); // Сохраняем данные в состоянии
+      setTransactionsInfo(data.transactionsInfo);
     } catch (error) {
-      console.error(error);
     }
   }
 
@@ -60,9 +63,8 @@ function StatisticsPage(): JSX.Element {
   async function fetchTransactions() {
     try {
       const data = await fetchTrnsctn(selectedCell, selectedMonth, selectedYear);
-      setTransactions(data.transactions); // Сохраняем данные в состоянии
+      setTransactions(data.transactions);
     } catch (error) {
-      console.error(error);
     }
   }
 
@@ -132,13 +134,14 @@ function StatisticsPage(): JSX.Element {
   }
 
   return (
-    <>
+    <TokenGuard>
       <div>
         <StatisticsItem
           onCellClickIndex={handleCellIndexChange}
           onKindChange={handleKindChange}
           onMonthChange={handleMonthChange}
           onYearChange={handleYearChange}
+          demo={demo}
         />
         <StatisticsMenu>
           {
@@ -160,7 +163,10 @@ function StatisticsPage(): JSX.Element {
               } if (selectedCell >= 0 && trn.length > 0) {
                 return trn.map((transaction: Transaction) =>
                   <MainComponent transaction={transaction} title={transaction.category} id={transaction.id} sum={transaction.sum}>
-                    {transaction.date}
+                    <Moment locale="ru" format="ll">
+                      {transaction.date}
+                    </Moment>
+                    {` ${transaction.description}`}
                   </MainComponent>
                 );
               }
@@ -169,7 +175,7 @@ function StatisticsPage(): JSX.Element {
         </StatisticsMenu>
       </div>
       {isLoggedIn ? null : <DemoMode />}
-    </>
+    </TokenGuard>
   );
 }
 

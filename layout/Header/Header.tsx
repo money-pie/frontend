@@ -2,20 +2,30 @@ import React, { KeyboardEvent, useEffect, useState } from "react";
 import cn from "classnames";
 import { HeaderProps } from "./Header.props";
 import styles from "./Header.module.css";
-import Logo from "../logo.svg";
 import Htag from "../../components/elements/Htag/Htag";
 import IconBell from "./IconBell/iconBell.svg";
 import IconBurgerMenu from "./IconBurgerMenu/iconBurgerMenu.svg";
 import { Sidebar } from "../Sidebar/Sidebar";
+import { useRouter } from 'next/router';
+import { useAppContext } from '../../context/AppContext';
 
 export function Header({ visible, className, ...props }: HeaderProps): JSX.Element {
-  const isPremiumActive = false; // сюда передаем наше состояние о подписке
+  let isPremiumActive = false;
+  let defaultNotifications = false; 
+  let actualNotifications = props.notifications ?? defaultNotifications;
+  const { user } = useAppContext();
+  if (user) {
+    if (user.subId) {
+      isPremiumActive = true;
+    }
+    actualNotifications = user.notification;
+  }
 
+  const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleBellClick = () => {
-    // Выполнить переход на другую страницу при клике на колокольчик
-    window.location.href = "/notificationPage";
+    router.push("/notificationPage");
   };
 
   const handleBurgerClick = () => {
@@ -94,19 +104,19 @@ export function Header({ visible, className, ...props }: HeaderProps): JSX.Eleme
         MoneyPie
       </Htag>
       {
-        props.notifications
-        ?
-        <span
-          role="button"
-          className={styles["right-bell"]}
-          onClick={handleBellClick}
-          onKeyDown={handleKeyDownForBell}
-          tabIndex={0}
-        >
-          <IconBell />
-        </span>
-        :
-        <span></span>
+        actualNotifications
+          ?
+          <span
+            role="button"
+            className={styles["right-bell"]}
+            onClick={handleBellClick}
+            onKeyDown={handleKeyDownForBell}
+            tabIndex={0}
+          >
+            <IconBell />
+          </span>
+          :
+          <span></span>
       }
     </header>
   );

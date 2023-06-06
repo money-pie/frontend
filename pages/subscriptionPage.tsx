@@ -1,12 +1,14 @@
+import { useRouter } from 'next/router';
 import React, { useState } from "react";
 import AuthGuard from '../components/guards/AuthGuard/AuthGuard';
 import SubscriptionBanner from "../components/modules/SubscriptionBanner/SubscriptionBanner";
 
 function SubscriptionPage(): JSX.Element {
   const [showModal, setShowModal] = useState<boolean>(true);
+  const router = useRouter();
 
   const closeModal = () => {
-    window.location.href = "/";
+    router.push("/main");
   };
 
   return (

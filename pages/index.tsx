@@ -4,11 +4,11 @@ import { withLayout } from "../layout/Layout";
 import { MenuItem } from "../page-components/MenuItem/MenuItem";
 import { MainTarget } from "../page-components/MainTarget/MainTarget";
 import DemoMode from "../page-components/DemoMode/DemoMode";
-import PlusIcon from "../page-components/PlusIcon/plusIcon.svg";
-import styles from "../page-components/MainTarget/PlusIcon.module.css";
-import ExpenseAndIncomeWindow from "../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 import MainComponent from "../page-components/MainComponent/MainComponent";
 import { getServerURL } from '../lib/api';
+import TokenGuard from '../components/guards/AuthGuard/TokenGuard';
+import 'moment/locale/ru';
+import Moment from 'react-moment';
 
 function Home({ user, transactions }: any): JSX.Element {
   const demo: boolean = true;
@@ -25,19 +25,22 @@ function Home({ user, transactions }: any): JSX.Element {
   };
 
   return (
-    <>
-      <MainTarget demo={demo} aim={user.aim}/>
-      <MenuItem>
+    <TokenGuard>
+      <MainTarget demo={demo} aim={user.aim} />
+      <MenuItem demo={demo}>
         {
           transactions.map((transaction: any) =>
             <MainComponent transaction={transaction} title={transaction.category} id={transaction.id} sum={transaction.sum}>
-              {transaction.date}
+              <Moment locale="ru" format="ll">
+                {transaction.date}
+              </Moment>
+              {` ${transaction.description}`}
             </MainComponent>
           )
         }
       </MenuItem>
       <DemoMode />
-    </>
+    </TokenGuard>
   );
 }
 

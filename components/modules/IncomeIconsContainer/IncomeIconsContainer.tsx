@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAppContext } from '../../../context/AppContext';
+import { RuCategory } from '../../../types/constants';
 import styles from "./IncomeIconsContainer.module.css";
 
 type IconProps = {
@@ -44,8 +46,10 @@ function IconRow({ icons }: IconRowProps) {
 
 function IncomeIconsContainer() {
   const [selectedIcon, setSelectedIcon] = useState("");
+  const { updateCategoryDto } = useAppContext();
 
-  const handleIconClick = (alt: string) => {
+  const handleIconClick = (alt: string, ruCategory: RuCategory) => {
+    updateCategoryDto(ruCategory);
     setSelectedIcon(alt);
   };
 
@@ -53,29 +57,29 @@ function IncomeIconsContainer() {
     {
       imageSrc: "/images/icon1income.svg",
       alt: "icon1income",
-      text: "Зарплата",
-      onClick: () => handleIconClick("icon1"),
+      text: RuCategory.SALARY,
+      onClick: () => handleIconClick("icon1", RuCategory.SALARY),
       isSelected: selectedIcon === "icon1",
     },
     {
       imageSrc: "/images/icon2income.svg",
       alt: "icon2income",
-      text: "Награда",
-      onClick: () => handleIconClick("icon2"),
+      text: RuCategory.REWARD,
+      onClick: () => handleIconClick("icon2", RuCategory.REWARD),
       isSelected: selectedIcon === "icon2",
     },
     {
       imageSrc: "/images/icon3income.svg",
       alt: "icon3income",
-      text: "Подарок",
-      onClick: () => handleIconClick("icon3"),
+      text: RuCategory.PRESENT,
+      onClick: () => handleIconClick("icon3", RuCategory.PRESENT),
       isSelected: selectedIcon === "icon3",
     },
     {
       imageSrc: "/images/icon4income.svg",
       alt: "icon4income",
-      text: "Продажа",
-      onClick: () => handleIconClick("icon4"),
+      text: RuCategory.SALES,
+      onClick: () => handleIconClick("icon4", RuCategory.SALES),
       isSelected: selectedIcon === "icon4",
     },
   ];
@@ -84,8 +88,8 @@ function IncomeIconsContainer() {
     {
       imageSrc: "/images/icon5income.svg",
       alt: "icon5income",
-      text: "Другое",
-      onClick: () => handleIconClick("icon5"),
+      text: RuCategory.OTHER,
+      onClick: () => handleIconClick("icon5", RuCategory.OTHER),
       isSelected: selectedIcon === "icon5",
     },
   ];

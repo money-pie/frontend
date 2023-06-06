@@ -5,18 +5,26 @@ import styles from "./Notifications.module.css";
 import ExpenseAndIncomeWindow from "../../components/modules/ExpenseAndIncomeWindow/ExpenseAndIncomeWindow";
 import Htag from "../../components/elements/Htag/Htag";
 import CloseCrossIcon from "../../components/elements/CloseCrossIcon/closeCross.svg";
+import { getServerURL } from '../../lib/api';
+import { useAppContext } from '../../context/AppContext';
 
 function Notifications({
   className,
   children,
   title,
-  onClose,
+  hintId,
   ...props
 }: NotificationsProps): JSX.Element {
+  const { deleteHint } = useAppContext();
+
   function handleKeyDown(event: KeyboardEvent<HTMLSpanElement>) {
     if (event.key === "Escape") {
-      // onClose();
+      deleteHint(hintId);
     }
+  }
+
+  async function handleClick() {
+    deleteHint(hintId);
   }
 
   return (
@@ -24,7 +32,7 @@ function Notifications({
       <span
         role="button"
         className={styles["close-cross"]}
-        onClick={onClose}
+        onClick={handleClick}
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >

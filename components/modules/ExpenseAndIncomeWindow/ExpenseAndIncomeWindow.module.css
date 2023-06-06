@@ -41,6 +41,8 @@
   flex-direction: row;
   justify-content: space-evenly;
 
+  margin-top: 0.8rem;
+
   margin-right: -1.5rem;
   margin-left: -1.5rem;
   gap: 2rem;

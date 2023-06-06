@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAppContext } from '../../../context/AppContext';
+import { RuCategory } from '../../../types/constants';
 import styles from "./ExpenseIconsContainer.module.css";
 
 type IconProps = {
@@ -10,6 +12,7 @@ type IconProps = {
 };
 
 function Icon({ imageSrc, alt, text, onClick, isSelected }: IconProps) {
+
   return (
     <div
       role="button"
@@ -44,8 +47,10 @@ function IconRow({ icons }: IconRowProps) {
 
 function ExpenseIconsContainer() {
   const [selectedIcon, setSelectedIcon] = useState("");
+  const { updateCategoryDto } = useAppContext();
 
-  const handleIconClick = (alt: string) => {
+  const handleIconClick = (alt: string, ruCategory: RuCategory) => {
+    updateCategoryDto(ruCategory);
     setSelectedIcon(alt);
   };
 
@@ -53,29 +58,29 @@ function ExpenseIconsContainer() {
     {
       imageSrc: "/images/icon1.svg",
       alt: "icon1",
-      text: "Продукты",
-      onClick: () => handleIconClick("icon1"),
+      text: RuCategory.PRODUCTS,
+      onClick: () => handleIconClick("icon1", RuCategory.PRODUCTS),
       isSelected: selectedIcon === "icon1",
     },
     {
       imageSrc: "/images/icon2.svg",
       alt: "icon2",
-      text: "Здоровье",
-      onClick: () => handleIconClick("icon2"),
+      text: RuCategory.HEALTH,
+      onClick: () => handleIconClick("icon2", RuCategory.HEALTH),
       isSelected: selectedIcon === "icon2",
     },
     {
       imageSrc: "/images/icon3.svg",
       alt: "icon3",
-      text: "Развлечения",
-      onClick: () => handleIconClick("icon3"),
+      text: RuCategory.ENTERTAINMENT,
+      onClick: () => handleIconClick("icon3", RuCategory.ENTERTAINMENT),
       isSelected: selectedIcon === "icon3",
     },
     {
       imageSrc: "/images/icon4.svg",
       alt: "icon4",
-      text: "ЖКХ",
-      onClick: () => handleIconClick("icon4"),
+      text: RuCategory.HOME,
+      onClick: () => handleIconClick("icon4", RuCategory.HOME),
       isSelected: selectedIcon === "icon4",
     },
   ];
@@ -84,29 +89,29 @@ function ExpenseIconsContainer() {
     {
       imageSrc: "/images/icon5.svg",
       alt: "icon5",
-      text: "Обучение",
-      onClick: () => handleIconClick("icon5"),
+      text: RuCategory.EDUCATION,
+      onClick: () => handleIconClick("icon5", RuCategory.EDUCATION),
       isSelected: selectedIcon === "icon5",
     },
     {
       imageSrc: "/images/icon6.svg",
       alt: "icon6",
-      text: "Фитнес",
-      onClick: () => handleIconClick("icon6"),
+      text: RuCategory.FITNESS,
+      onClick: () => handleIconClick("icon6", RuCategory.FITNESS),
       isSelected: selectedIcon === "icon6",
     },
     {
       imageSrc: "/images/icon7.svg",
       alt: "icon7",
-      text: "Транспорт",
-      onClick: () => handleIconClick("icon7"),
+      text: RuCategory.TRANSPORT,
+      onClick: () => handleIconClick("icon7", RuCategory.TRANSPORT),
       isSelected: selectedIcon === "icon7",
     },
     {
       imageSrc: "/images/icon8.svg",
       alt: "icon8",
-      text: "Налоги",
-      onClick: () => handleIconClick("icon8"),
+      text: RuCategory.TAXES,
+      onClick: () => handleIconClick("icon8", RuCategory.TAXES),
       isSelected: selectedIcon === "icon8",
     },
   ];
