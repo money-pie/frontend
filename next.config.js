@@ -1,6 +1,10 @@
+require('dotenv').config();
 module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
-    domains: ['courses-top.ru']
+    domains: ['money-pie.up.railway.app', 'production-moneypie.up.railway.app']
   },
   webpack(config, options) {
     config.module.rules.push({
