@@ -1,4 +1,4 @@
-import { Category, RuCategory, RuKind } from './constants';
+import { Category, Kind, Month, RuCategory, RuKind } from './constants';
 
 export interface TransactionsInfo {
   sum: number;
@@ -27,9 +27,41 @@ export interface Transaction {
   author: string;
 }
 
+export interface TransactionResponse {
+  id: string;
+  sum: number;
+  category: string;
+  kind: string;
+  date: string;
+  personal: boolean;
+  description: string;
+  userId: string;
+  groupId: string;
+}
+
 export interface PieData {
   sum: number;
   category: string;
+}
+
+export interface TransactionDto {
+  sum: number;
+  category: RuCategory | undefined;
+  kind: RuKind | undefined;
+  date: string | undefined;
+  personal: boolean;
+  description: string;
+}
+
+
+export interface TransactionQuery {
+  personal: boolean,
+  category: Category | undefined,
+  kind: Kind |undefined,
+  month: Month | undefined,
+  year: number,
+  page?: number,
+  limit?: number,
 }
 
 export class PieDataClass implements PieData {
